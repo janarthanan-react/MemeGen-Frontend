@@ -241,7 +241,7 @@ export const GifDropzone: React.FC = () => {
               key={sample.id}
               type="button"
               onClick={() => loadSampleClip(sample)}
-              className="flex items-center gap-3 p-3 rounded-2xl bg-[#071330]/60 hover:bg-[#071330] border border-white/10 hover:border-cyan-400/50 transition-all duration-200 text-left group cursor-pointer"
+              className="flex items-center gap-3 p-3 rounded-2xl bg-[#071330]/60 hover:bg-[#071330] border border-white/10 hover:border-cyan-400/50 transition-all duration-200 text-left group cursor-pointer hover:-translate-y-0.5 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
             >
               <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-900 shrink-0 relative border border-white/10">
                 <img

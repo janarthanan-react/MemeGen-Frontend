@@ -39,15 +39,15 @@ export const PricingFaq: React.FC = () => {
               <button
                 type="button"
                 onClick={() => toggle(idx)}
-                className="w-full flex items-center justify-between p-4 sm:p-5 text-left cursor-pointer gap-4"
+                className="w-full flex items-center justify-between p-4 sm:p-5 text-left cursor-pointer gap-4 active:scale-[0.99] transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none"
                 aria-expanded={isOpen}
               >
-                <span className="text-sm sm:text-base font-bold text-slate-900">
+                <span className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#1463E9] transition-colors">
                   {faq.question}
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 ${
-                    isOpen ? 'rotate-180 text-blue-600' : ''
+                  className={`w-4 h-4 text-slate-400 group-hover:text-[#1463E9] transition-all duration-200 shrink-0 ${
+                    isOpen ? 'rotate-180 text-[#1463E9]' : ''
                   }`}
                 />
               </button>

@@ -257,10 +257,10 @@ export const InteractivePlayground: React.FC = () => {
                       setLocalTemplate(template);
                       setSelectedTemplate(template);
                     }}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer min-h-[36px] flex items-center ${
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] cursor-pointer min-h-[36px] flex items-center focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                       isActive
-                        ? 'bg-blue-600 text-white shadow-sm shadow-blue-600/30 ring-2 ring-blue-600/20'
-                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
+                        ? 'bg-[#1463E9] text-white shadow-sm shadow-blue-600/30 ring-2 ring-blue-600/20'
+                        : 'bg-white border border-[#1463E9]/30 text-[#1463E9] hover:bg-[#EFF6FF] hover:border-[#1463E9] shadow-2xs'
                     }`}
                   >
                     {template.name}
@@ -289,7 +289,7 @@ export const InteractivePlayground: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleRandomPreset}
-                  className="text-[11px] font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1 cursor-pointer"
+                  className="text-[11px] font-semibold text-[#1463E9] hover:text-[#0E52C7] flex items-center gap-1 cursor-pointer transition-colors duration-200"
                 >
                   <RefreshCw className="w-3 h-3" />
                   <span>Random Joke Idea</span>
@@ -323,10 +323,10 @@ export const InteractivePlayground: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsUppercase(!isUppercase)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                 isUppercase
-                  ? 'bg-blue-50 border-blue-300 text-blue-700'
-                  : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                  ? 'bg-[#EFF6FF] border-blue-300 text-[#1463E9] shadow-2xs'
+                  : 'bg-white border-slate-200 text-slate-700 hover:bg-[#EFF6FF] hover:text-[#1463E9]'
               }`}
             >
               ALL CAPS: {isUppercase ? 'ON' : 'OFF'}
@@ -352,7 +352,7 @@ export const InteractivePlayground: React.FC = () => {
                 window.history.pushState({}, '', '/editor');
                 window.dispatchEvent(new Event('popstate'));
               }}
-              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-sm transition-all cursor-pointer shrink-0"
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1463E9] hover:bg-[#0E52C7] text-white font-semibold text-xs shadow-sm hover:shadow-md hover:shadow-blue-500/25 transition-all duration-200 cursor-pointer shrink-0 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none"
             >
               <span>Open in Studio</span>
               <ArrowRight className="w-3.5 h-3.5" />

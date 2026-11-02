@@ -117,11 +117,11 @@ export const GifPreviewPlayer: React.FC<GifPreviewPlayerProps> = ({ onNavigate }
         </Button>
 
         <Button
-          variant="outline"
+          variant="dark"
           size="lg"
           leftIcon={<ExternalLink className="w-4 h-4 text-cyan-400" />}
           onClick={handleOpenEditor}
-          className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 text-sm font-semibold min-h-[46px]"
+          className="w-full sm:w-auto border-white/20 text-white hover:text-white hover:bg-white/10 text-sm font-semibold min-h-[46px]"
         >
           Open in Editor
         </Button>

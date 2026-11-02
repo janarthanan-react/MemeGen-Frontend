@@ -87,7 +87,7 @@ export const PaymentFailedPage: React.FC<PaymentFailedPageProps> = ({ onNavigate
             variant="primary"
             size="lg"
             onClick={handleRetry}
-            className="w-full sm:w-auto rounded-2xl font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto rounded-2xl font-bold bg-[#1463E9] hover:bg-[#0E52C7] text-white shadow-[0_4px_16px_rgba(20,99,233,0.38)] hover:shadow-[0_8px_24px_rgba(20,99,233,0.48)] flex items-center justify-center gap-2 cursor-pointer"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Try Demo Payment Again</span>
@@ -105,7 +105,7 @@ export const PaymentFailedPage: React.FC<PaymentFailedPageProps> = ({ onNavigate
           <button
             type="button"
             onClick={() => onNavigate('/')}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-slate-600 py-2 cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#1463E9] py-2 cursor-pointer transition-colors duration-200"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Return to Home</span>

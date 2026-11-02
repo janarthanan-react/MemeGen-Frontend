@@ -150,7 +150,7 @@ export const DraftGrid: React.FC<DraftGridProps> = ({
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="text-xs text-slate-500 hover:text-blue-600 font-semibold flex items-center gap-1 cursor-pointer"
+                className="text-xs text-slate-500 hover:text-[#1463E9] font-semibold flex items-center gap-1 cursor-pointer px-2 py-1 rounded-lg hover:bg-[#EFF6FF] transition-all duration-150 active:scale-95"
               >
                 <X className="w-3 h-3" />
                 Clear

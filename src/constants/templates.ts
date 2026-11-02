@@ -219,22 +219,6 @@ export const POPULAR_TEMPLATES: MemeTemplate[] = [
       { id: 't2', placeholder: 'Also me making bad decisions', defaultYPercent: 75 },
     ],
   },
-  {
-    id: 'baby-yoda',
-    name: 'Baby Yoda',
-    imageUrl: 'https://i.imgflip.com/3m041o.jpg',
-    width: 700,
-    height: 400,
-    boxCount: 2,
-    category: 'trending',
-    tags: ['grogu', 'star wars', 'cute', 'soup', 'movies & tv', 'trending', 'animals'],
-    description: 'Adorable Grogu (Baby Yoda) standing curiously with oversized ears and innocent wide eyes.',
-    usageCount: 520800,
-    defaultTextSlots: [
-      { id: 't1', placeholder: 'Me waiting for mom', defaultYPercent: 15 },
-      { id: 't2', placeholder: 'To finish talking to her friend in the grocery aisle', defaultYPercent: 80 },
-    ],
-  },
 ];
 
 export const SAMPLE_TEMPLATES = POPULAR_TEMPLATES;
@@ -384,7 +368,7 @@ export const COMMUNITY_MEMES: CommunityMeme[] = [
   },
   {
     id: 'comm-brain-3am',
-    title: 'My brain at 3 AM 🌌',
+    title: 'My brain at 3 AM',
     imageUrl: '/comm-brain-3am.jpg',
     author: {
       name: 'galaxy_vibes',

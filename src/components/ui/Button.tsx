@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { cn } from '../../lib/utils';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'subtle' | 'dark';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'subtle' | 'dark' | 'gradient';
   size?: 'xs' | 'sm' | 'md' | 'lg';
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
@@ -28,30 +28,32 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-medium transition-all duration-200 select-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-[0.98]';
+      'inline-flex items-center justify-center font-semibold tracking-[-0.01em] transition-all duration-200 ease-out select-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1463E9] disabled:opacity-45 disabled:cursor-not-allowed disabled:pointer-events-none disabled:transform-none disabled:shadow-none hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]';
 
     const variants = {
       primary:
-        'bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/25 border border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/30 active:bg-blue-700',
+        'bg-[#1463E9] hover:bg-[#0E52C7] text-white shadow-[0_2px_10px_-2px_rgba(20,99,233,0.38)] hover:shadow-[0_6px_20px_-3px_rgba(20,99,233,0.48)] border border-[#2B7AF7]/40 active:bg-[#0B43A6]',
+      gradient:
+        'bg-gradient-to-r from-[#1463E9] to-blue-600 hover:from-[#0E52C7] hover:to-blue-700 text-white shadow-[0_2px_12px_-2px_rgba(20,99,233,0.4)] hover:shadow-[0_8px_24px_-4px_rgba(20,99,233,0.5)] border border-blue-400/35 active:bg-[#0B43A6]',
       secondary:
-        'bg-white text-slate-800 hover:bg-slate-50 border border-slate-200 shadow-xs hover:border-slate-300 hover:text-slate-900 active:bg-slate-100',
+        'bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1463E9] hover:text-[#0E52C7] border border-blue-200/80 shadow-2xs hover:shadow-xs active:bg-blue-200/70',
       outline:
-        'bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 active:bg-slate-200/60',
+        'bg-white hover:bg-[#EFF6FF] text-[#1463E9] hover:text-[#0E52C7] border border-[#1463E9]/30 hover:border-[#1463E9] shadow-2xs hover:shadow-xs active:bg-blue-100/70',
       ghost:
-        'bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 active:bg-slate-200/60',
+        'bg-transparent text-slate-700 hover:text-[#1463E9] hover:bg-[#EFF6FF] active:bg-blue-100/70',
       danger:
-        'bg-rose-600 text-white hover:bg-rose-500 shadow-md shadow-rose-600/20 active:bg-rose-700',
+        'bg-rose-600 hover:bg-rose-700 text-white shadow-[0_2px_10px_-2px_rgba(225,29,72,0.35)] hover:shadow-[0_6px_18px_-3px_rgba(225,29,72,0.45)] border border-rose-500/30 active:bg-rose-800',
       subtle:
-        'bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200/60 hover:border-blue-300 active:bg-blue-200/70',
+        'bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1463E9] hover:text-[#0E52C7] border border-blue-200/70 hover:border-blue-300 active:bg-blue-200/60',
       dark:
-        'bg-white/10 hover:bg-white/20 text-white border border-white/15 backdrop-blur-md shadow-sm active:bg-white/5',
+        'bg-white/10 hover:bg-white/20 text-white hover:text-white border border-white/15 hover:border-white/35 backdrop-blur-md shadow-2xs hover:shadow-xs active:bg-white/5',
     };
 
     const sizes = {
-      xs: 'text-xs px-2.5 py-1 gap-1 h-7 rounded-lg',
-      sm: 'text-xs px-3 py-1.5 gap-1.5 h-8.5 rounded-xl',
-      md: 'text-sm px-4 py-2.5 gap-2 h-10 rounded-xl',
-      lg: 'text-base px-6 py-3.5 gap-2.5 h-12 rounded-xl font-semibold',
+      xs: 'text-xs px-2.5 py-1 gap-1 h-7 rounded-lg font-medium',
+      sm: 'text-xs px-3.5 py-1.5 gap-1.5 h-8.5 rounded-xl font-semibold',
+      md: 'text-sm px-4.5 py-2.5 gap-2 h-10 rounded-xl font-semibold',
+      lg: 'text-base px-6 py-3.5 gap-2.5 h-12 rounded-xl font-bold',
     };
 
     return (

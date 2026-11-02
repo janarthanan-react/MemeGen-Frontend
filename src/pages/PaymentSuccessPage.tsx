@@ -175,7 +175,7 @@ export const PaymentSuccessPage: React.FC<PaymentSuccessPageProps> = ({ onNaviga
             variant="primary"
             size="lg"
             onClick={() => onNavigate('/editor')}
-            className="w-full sm:w-auto rounded-2xl font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto rounded-2xl font-bold bg-[#1463E9] hover:bg-[#0E52C7] text-white shadow-[0_4px_16px_rgba(20,99,233,0.38)] hover:shadow-[0_8px_24px_rgba(20,99,233,0.48)] flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>Launch Meme Studio</span>
             <ArrowRight className="w-4 h-4" />
@@ -194,7 +194,7 @@ export const PaymentSuccessPage: React.FC<PaymentSuccessPageProps> = ({ onNaviga
             variant="ghost"
             size="lg"
             onClick={handlePrint}
-            className="w-full sm:w-auto rounded-2xl font-semibold text-slate-600 hover:bg-slate-100 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto rounded-2xl font-semibold text-slate-700 hover:text-[#1463E9] hover:bg-[#EFF6FF] flex items-center justify-center gap-2 cursor-pointer"
           >
             <Printer className="w-4 h-4" />
             <span>Print Receipt</span>

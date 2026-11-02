@@ -131,12 +131,12 @@ export const PlanCard: React.FC<PlanCardProps> = ({
               variant={isPro ? 'primary' : isPremium ? 'primary' : 'outline'}
               size="lg"
               onClick={() => onSelect(plan.id)}
-              className={`w-full rounded-2xl font-bold transition-transform active:scale-98 cursor-pointer ${
+              className={`w-full rounded-2xl font-bold transition-all duration-200 cursor-pointer ${
                 isPro
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/30'
+                  ? 'bg-[#1463E9] hover:bg-[#0E52C7] text-white shadow-[0_4px_16px_rgba(20,99,233,0.38)] hover:shadow-[0_8px_24px_rgba(20,99,233,0.48)] border border-[#2B7AF7]/40'
                   : isPremium
-                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg shadow-purple-600/30'
-                  : 'hover:bg-slate-100 text-slate-800'
+                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-[0_4px_16px_rgba(147,51,234,0.38)] hover:shadow-[0_8px_24px_rgba(147,51,234,0.48)] border border-purple-400/30'
+                  : 'bg-white hover:bg-[#EFF6FF] text-[#1463E9] hover:text-[#0E52C7] border border-[#1463E9]/30 hover:border-[#1463E9] shadow-2xs hover:shadow-xs'
               }`}
             >
               {plan.ctaText}

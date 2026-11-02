@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { TextLayer, CanvasSettings, EditorHistoryEntry } from '../types/editor';
+import type { TextLayer, CanvasSettings, EditorHistoryEntry, DoodleStroke } from '../types/editor';
 import type { MemeTemplate } from '../types/template';
 import type { MemeDraft } from '../types/draft';
 import { POPULAR_TEMPLATES } from '../constants/templates';
@@ -107,6 +107,24 @@ interface EditorStoreState {
   setIsResetModalOpen: (open: boolean) => void;
   setIsTemplatePickerOpen: (open: boolean) => void;
   setIsExporting: (exporting: boolean) => void;
+  updateCanvasSettings: (updates: Partial<CanvasSettings>) => void;
+  resetCanvasFilters: () => void;
+  toggleFlipHorizontal: () => void;
+  toggleFlipVertical: () => void;
+  addDoodleStroke: (stroke: DoodleStroke) => void;
+  clearDoodles: () => void;
+  undoLastDoodle: () => void;
+  applyFilterPreset: (preset: 'normal' | 'autotune' | 'hdr' | 'drama' | 'glamour' | 'vintage' | 'noir' | 'retrolux' | 'deepfry' | 'cyberpunk' | 'vhs' | 'cursed') => void;
+  isComparing: boolean;
+  setIsComparing: (comparing: boolean) => void;
+  isDrawingMode: boolean;
+  setIsDrawingMode: (active: boolean) => void;
+  drawingColor: string;
+  setDrawingColor: (color: string) => void;
+  drawingBrushSize: number;
+  setDrawingBrushSize: (size: number) => void;
+  isDrawingHighlighter: boolean;
+  setIsDrawingHighlighter: (highlighter: boolean) => void;
   applyAiCaption: (options: {
     text: string;
     mode?: 'replace' | 'new';
@@ -131,6 +149,30 @@ export const useEditorStore = create<EditorStoreState>((set, get) => {
       zoom: 1,
       fitToScreen: true,
       showGrid: false,
+      brightness: 100,
+      contrast: 100,
+      saturation: 100,
+      exposure: 0,
+      highlights: 0,
+      shadows: 0,
+      warmth: 0,
+      tint: 0,
+      clarity: 0,
+      vignette: 0,
+      grain: 0,
+      sepia: 0,
+      invert: 0,
+      blur: 0,
+      hueRotate: 0,
+      flipHorizontal: false,
+      flipVertical: false,
+      frameStyle: 'none',
+      frameTitle: '',
+      frameSubtitle: '',
+      watermarkText: '',
+      watermarkOpacity: 0.7,
+      watermarkPosition: 'bottom-right',
+      doodles: [],
     },
     history: {
       past: [],
@@ -141,6 +183,12 @@ export const useEditorStore = create<EditorStoreState>((set, get) => {
     isResetModalOpen: false,
     isTemplatePickerOpen: false,
     currentDraftId: null,
+    isComparing: false,
+    setIsComparing: (comparing: boolean) => set({ isComparing: comparing }),
+    isDrawingMode: false,
+    drawingColor: '#EF4444',
+    drawingBrushSize: 5,
+    isDrawingHighlighter: false,
 
     loadTemplate: (template, preserveCustomText = false) => {
       const state = get();
@@ -511,6 +559,286 @@ export const useEditorStore = create<EditorStoreState>((set, get) => {
     setIsExporting: (exporting) => {
       set({ isExporting: exporting });
     },
+
+    updateCanvasSettings: (updates) => {
+      set((state) => ({
+        canvasSettings: { ...state.canvasSettings, ...updates },
+      }));
+    },
+
+    resetCanvasFilters: () => {
+      set((state) => ({
+        canvasSettings: {
+          ...state.canvasSettings,
+          brightness: 100,
+          contrast: 100,
+          saturation: 100,
+          exposure: 0,
+          highlights: 0,
+          shadows: 0,
+          warmth: 0,
+          tint: 0,
+          clarity: 0,
+          vignette: 0,
+          grain: 0,
+          sepia: 0,
+          invert: 0,
+          blur: 0,
+          hueRotate: 0,
+        },
+      }));
+    },
+
+    toggleFlipHorizontal: () => {
+      set((state) => ({
+        canvasSettings: {
+          ...state.canvasSettings,
+          flipHorizontal: !state.canvasSettings.flipHorizontal,
+        },
+      }));
+    },
+
+    toggleFlipVertical: () => {
+      set((state) => ({
+        canvasSettings: {
+          ...state.canvasSettings,
+          flipVertical: !state.canvasSettings.flipVertical,
+        },
+      }));
+    },
+
+    addDoodleStroke: (stroke) => {
+      set((state) => ({
+        canvasSettings: {
+          ...state.canvasSettings,
+          doodles: [...(state.canvasSettings.doodles || []), stroke],
+        },
+      }));
+    },
+
+    clearDoodles: () => {
+      set((state) => ({
+        canvasSettings: {
+          ...state.canvasSettings,
+          doodles: [],
+        },
+      }));
+    },
+
+    undoLastDoodle: () => {
+      set((state) => ({
+        canvasSettings: {
+          ...state.canvasSettings,
+          doodles: (state.canvasSettings.doodles || []).slice(0, -1),
+        },
+      }));
+    },
+
+    applyFilterPreset: (preset) => {
+      set((state) => {
+        let filters: Partial<CanvasSettings> = {
+          brightness: 100,
+          contrast: 100,
+          saturation: 100,
+          exposure: 0,
+          highlights: 0,
+          shadows: 0,
+          warmth: 0,
+          tint: 0,
+          clarity: 0,
+          vignette: 0,
+          grain: 0,
+          sepia: 0,
+          invert: 0,
+          blur: 0,
+          hueRotate: 0,
+        };
+        switch (preset) {
+          case 'autotune':
+            filters = {
+              ...filters,
+              brightness: 105,
+              contrast: 115,
+              saturation: 110,
+              highlights: 10,
+              shadows: 8,
+              warmth: 5,
+              clarity: 15,
+            };
+            break;
+          case 'hdr':
+            filters = {
+              ...filters,
+              brightness: 105,
+              contrast: 130,
+              saturation: 125,
+              highlights: 25,
+              shadows: 20,
+              warmth: 5,
+              clarity: 55,
+              vignette: 20,
+            };
+            break;
+          case 'drama':
+            filters = {
+              ...filters,
+              brightness: 95,
+              contrast: 140,
+              saturation: 75,
+              highlights: -15,
+              shadows: -20,
+              warmth: -10,
+              clarity: 45,
+              vignette: 40,
+              grain: 15,
+            };
+            break;
+          case 'glamour':
+            filters = {
+              ...filters,
+              brightness: 110,
+              contrast: 95,
+              saturation: 115,
+              highlights: 30,
+              shadows: 15,
+              warmth: 25,
+              tint: 5,
+              clarity: 0,
+              vignette: 15,
+            };
+            break;
+          case 'retrolux':
+            filters = {
+              ...filters,
+              brightness: 102,
+              contrast: 120,
+              saturation: 110,
+              highlights: 15,
+              shadows: 10,
+              warmth: 25,
+              tint: 10,
+              clarity: 20,
+              vignette: 35,
+              grain: 45,
+              sepia: 15,
+            };
+            break;
+          case 'deepfry':
+            filters = {
+              ...filters,
+              brightness: 125,
+              contrast: 190,
+              saturation: 200,
+              highlights: 40,
+              shadows: -30,
+              warmth: 40,
+              clarity: 70,
+            };
+            break;
+          case 'vintage':
+            filters = {
+              ...filters,
+              brightness: 98,
+              contrast: 115,
+              saturation: 85,
+              highlights: 10,
+              shadows: 15,
+              warmth: 35,
+              tint: 5,
+              clarity: 10,
+              vignette: 45,
+              grain: 25,
+              sepia: 35,
+            };
+            break;
+          case 'noir':
+            filters = {
+              ...filters,
+              brightness: 105,
+              contrast: 150,
+              saturation: 0,
+              highlights: 15,
+              shadows: -25,
+              clarity: 35,
+              vignette: 45,
+              grain: 30,
+            };
+            break;
+          case 'cyberpunk':
+            filters = {
+              ...filters,
+              brightness: 110,
+              contrast: 140,
+              saturation: 175,
+              highlights: 20,
+              shadows: -15,
+              warmth: -40,
+              tint: 30,
+              clarity: 30,
+              vignette: 25,
+              hueRotate: 180,
+            };
+            break;
+          case 'vhs':
+            filters = {
+              ...filters,
+              brightness: 105,
+              contrast: 130,
+              saturation: 140,
+              highlights: 10,
+              shadows: 10,
+              warmth: 15,
+              tint: 15,
+              clarity: 15,
+              vignette: 30,
+              grain: 50,
+              sepia: 20,
+              hueRotate: 330,
+            };
+            break;
+          case 'cursed':
+            filters = {
+              ...filters,
+              brightness: 100,
+              contrast: 130,
+              saturation: 120,
+              invert: 100,
+            };
+            break;
+          case 'normal':
+          default:
+            filters = {
+              brightness: 100,
+              contrast: 100,
+              saturation: 100,
+              exposure: 0,
+              highlights: 0,
+              shadows: 0,
+              warmth: 0,
+              tint: 0,
+              clarity: 0,
+              vignette: 0,
+              grain: 0,
+              sepia: 0,
+              invert: 0,
+              blur: 0,
+              hueRotate: 0,
+            };
+            break;
+        }
+        return {
+          canvasSettings: {
+            ...state.canvasSettings,
+            ...filters,
+          },
+        };
+      });
+    },
+
+    setIsDrawingMode: (active) => set({ isDrawingMode: active }),
+    setDrawingColor: (color) => set({ drawingColor: color }),
+    setDrawingBrushSize: (size) => set({ drawingBrushSize: size }),
+    setIsDrawingHighlighter: (highlighter) => set({ isDrawingHighlighter: highlighter }),
 
     applyAiCaption: ({ text, mode = 'replace', topText, bottomText }) => {
       const state = get();

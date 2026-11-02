@@ -20,6 +20,7 @@ export const EditorStudio: React.FC<EditorStudioProps> = ({ onBack }) => {
   const memeTitle = useEditorStore((state) => state.memeTitle);
   const selectedLayerId = useEditorStore((state) => state.selectedLayerId);
   const isExporting = useEditorStore((state) => state.isExporting);
+  const canvasSettings = useEditorStore((state) => state.canvasSettings);
 
   const undo = useEditorStore((state) => state.undo);
   const redo = useEditorStore((state) => state.redo);
@@ -170,6 +171,7 @@ export const EditorStudio: React.FC<EditorStudioProps> = ({ onBack }) => {
           title: memeTitle || activeTemplate.name,
           previewWidth: renderedCanvasSize.width,
           previewHeight: renderedCanvasSize.height,
+          canvasSettings,
         },
         format
       );
@@ -210,6 +212,7 @@ export const EditorStudio: React.FC<EditorStudioProps> = ({ onBack }) => {
         title: memeTitle || activeTemplate.name,
         previewWidth: renderedCanvasSize.width,
         previewHeight: renderedCanvasSize.height,
+        canvasSettings,
       });
 
       if (result.success) {
@@ -238,6 +241,7 @@ export const EditorStudio: React.FC<EditorStudioProps> = ({ onBack }) => {
         title: memeTitle || activeTemplate.name,
         previewWidth: renderedCanvasSize.width,
         previewHeight: renderedCanvasSize.height,
+        canvasSettings,
       });
 
       if (result.success) {

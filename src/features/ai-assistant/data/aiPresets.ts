@@ -4,27 +4,27 @@ export const AI_TONE_LABELS: Record<AiTone, { label: string; description: string
   funny: {
     label: 'Funny',
     description: 'Playful, goofy punchlines that bring instant laughs',
-    emoji: '😂',
+    emoji: '',
   },
   sarcastic: {
     label: 'Sarcastic',
     description: 'Dry wit, sharp irony, and passive-aggressive truths',
-    emoji: '🙃',
+    emoji: '',
   },
   wholesome: {
     label: 'Wholesome',
     description: 'Heartwarming, supportive, and delightfully uplifting',
-    emoji: '💖',
+    emoji: '',
   },
   'dark-humor': {
     label: 'Dark Humor',
     description: 'Morbid coping mechanisms and existential laughter',
-    emoji: '💀',
+    emoji: '',
   },
   relatable: {
     label: 'Relatable',
     description: 'Hyper-accurate everyday struggles everyone secretly feels',
-    emoji: '🤝',
+    emoji: '',
   },
 };
 

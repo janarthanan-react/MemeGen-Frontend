@@ -110,7 +110,7 @@ export const EditorQuickStart: React.FC = () => {
                 </div>
                 <button
                   onClick={() => setSelectedTemplate(null)}
-                  className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer"
+                  className="text-xs text-slate-400 hover:text-white transition-all duration-150 active:scale-95 cursor-pointer px-2 py-1 rounded-lg hover:bg-slate-800"
                 >
                   Change Template
                 </button>
@@ -171,7 +171,7 @@ export const EditorQuickStart: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsUppercase(!isUppercase)}
-                  className={`text-xs px-3 py-1.5 rounded-lg border transition-colors cursor-pointer ${
+                  className={`text-xs px-3 py-1.5 rounded-lg border transition-all duration-150 active:scale-95 cursor-pointer hover:-translate-y-0.5 ${
                     isUppercase
                       ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300'
                       : 'bg-slate-800 border-slate-700 text-slate-400'

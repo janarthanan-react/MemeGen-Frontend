@@ -150,9 +150,9 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({ profile, onClose }) =
                   setFormData((prev) => ({ ...prev, avatarUrl: preset.url }));
                   if (errors.avatarUrl) setErrors((prev) => ({ ...prev, avatarUrl: '' }));
                 }}
-                className={`w-12 h-12 rounded-2xl overflow-hidden border-2 transition-all cursor-pointer shrink-0 relative ${
+                className={`w-12 h-12 rounded-2xl overflow-hidden border-2 transition-all duration-150 cursor-pointer shrink-0 relative hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                   isSelected
-                    ? 'border-blue-600 ring-2 ring-blue-500/40 scale-105 shadow-md'
+                    ? 'border-blue-600 ring-2 ring-blue-500/40 shadow-sm'
                     : 'border-slate-200 hover:border-blue-400 opacity-80 hover:opacity-100'
                 }`}
                 aria-label={`Select ${preset.label}`}

@@ -124,10 +124,10 @@ export const GifCaptionsPanel: React.FC = () => {
         <button
           type="button"
           onClick={() => setCaption({ isUppercase: !caption.isUppercase })}
-          className={`flex items-center justify-center gap-2 p-2 rounded-xl border transition-colors col-span-2 sm:col-span-1 cursor-pointer text-xs font-semibold ${
+          className={`flex items-center justify-center gap-2 p-2 rounded-xl border transition-all duration-200 col-span-2 sm:col-span-1 cursor-pointer text-xs font-semibold hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none ${
             caption.isUppercase
-              ? 'bg-cyan-950/70 border-cyan-500/50 text-cyan-300'
-              : 'bg-white/5 border-white/10 text-slate-400 hover:text-white'
+              ? 'bg-cyan-950/70 border-cyan-500/50 text-cyan-300 shadow-xs shadow-cyan-500/20'
+              : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:border-white/20'
           }`}
         >
           <CaseSensitive className="w-4 h-4" />

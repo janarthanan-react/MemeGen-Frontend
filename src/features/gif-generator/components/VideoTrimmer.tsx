@@ -119,7 +119,7 @@ export const VideoTrimmer: React.FC<VideoTrimmerProps> = ({ onVideoElementReady 
         <button
           type="button"
           onClick={togglePlayPause}
-          className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-blue-600/90 text-white flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer border border-white/30 backdrop-blur-sm z-20 group-hover:opacity-100 opacity-90"
+          className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-[#1463E9] text-white flex items-center justify-center shadow-lg shadow-blue-900/50 hover:bg-[#0E52C7] active:bg-[#0B43A6] hover:-translate-y-0.5 active:scale-95 transition-all duration-200 cursor-pointer border border-white/30 backdrop-blur-sm z-20 group-hover:opacity-100 opacity-90 focus-visible:ring-2 focus-visible:ring-[#1463E9]"
           aria-label={isPlaying ? 'Pause video clip' : 'Play video clip'}
         >
           {isPlaying ? <Pause className="w-6 h-6 fill-white" /> : <Play className="w-6 h-6 fill-white ml-0.5" />}
@@ -183,7 +183,7 @@ export const VideoTrimmer: React.FC<VideoTrimmerProps> = ({ onVideoElementReady 
             <button
               type="button"
               onClick={handleSetStartToCurrent}
-              className="text-[10px] font-bold text-cyan-300 hover:text-white bg-cyan-950/60 hover:bg-cyan-900 border border-cyan-500/30 px-2 py-0.5 rounded-md transition-colors cursor-pointer"
+              className="text-[10px] font-bold text-cyan-300 hover:text-white bg-cyan-950/60 hover:bg-cyan-900 border border-cyan-500/30 px-2 py-0.5 rounded-md transition-all duration-150 active:scale-95 cursor-pointer"
             >
               Set Current ({currentTime.toFixed(1)}s)
             </button>
@@ -215,7 +215,7 @@ export const VideoTrimmer: React.FC<VideoTrimmerProps> = ({ onVideoElementReady 
             <button
               type="button"
               onClick={handleSetEndToCurrent}
-              className="text-[10px] font-bold text-blue-300 hover:text-white bg-blue-950/60 hover:bg-blue-900 border border-blue-500/30 px-2 py-0.5 rounded-md transition-colors cursor-pointer"
+              className="text-[10px] font-bold text-blue-300 hover:text-white bg-blue-950/60 hover:bg-blue-900 border border-blue-500/30 px-2 py-0.5 rounded-md transition-all duration-150 active:scale-95 cursor-pointer"
             >
               Set Current ({currentTime.toFixed(1)}s)
             </button>

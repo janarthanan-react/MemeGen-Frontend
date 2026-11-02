@@ -257,11 +257,11 @@ export const CustomImageUploadModal: React.FC<CustomImageUploadModalProps> = ({
         )}
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-white/10">
+        <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-white/10 flex-nowrap whitespace-nowrap">
           <button
             type="button"
             onClick={handleClose}
-            className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-150 cursor-pointer whitespace-nowrap shrink-0 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
           >
             Cancel
           </button>
@@ -270,7 +270,7 @@ export const CustomImageUploadModal: React.FC<CustomImageUploadModalProps> = ({
             type="button"
             disabled={!previewUrl}
             onClick={handleConfirmUpload}
-            className="px-5 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-bold shadow-md shadow-blue-600/30 transition-all cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-[#1463E9] hover:bg-[#0E52C7] disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none text-white text-xs sm:text-sm font-bold shadow-[0_2px_12px_rgba(20,99,233,0.35)] hover:shadow-[0_6px_20px_rgba(20,99,233,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none"
           >
             Load into Studio Canvas
           </button>

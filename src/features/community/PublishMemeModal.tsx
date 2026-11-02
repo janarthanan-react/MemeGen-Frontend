@@ -236,7 +236,7 @@ export const PublishMemeModal: React.FC<PublishMemeModalProps> = ({
               <button
                 type="button"
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-2.5 right-2.5 p-1.5 bg-black/75 hover:bg-black text-white rounded-full transition-all shadow-md"
+                className="absolute top-2.5 right-2.5 p-1.5 bg-black/75 hover:bg-black text-white rounded-full transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer"
                 aria-label="Remove image"
               >
                 <X className="w-4 h-4" />
@@ -298,7 +298,7 @@ export const PublishMemeModal: React.FC<PublishMemeModalProps> = ({
                       key={draft.id}
                       type="button"
                       onClick={() => setSelectedImage(img)}
-                      className="group relative w-16 h-16 rounded-xl overflow-hidden border border-slate-200 hover:border-blue-500 hover:ring-2 hover:ring-blue-300 shrink-0 transition-all bg-slate-100"
+                      className="group relative w-16 h-16 rounded-xl overflow-hidden border border-slate-200 hover:border-[#1463E9] hover:ring-2 hover:ring-blue-300 shrink-0 transition-all bg-slate-100 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
                       title={draft.title}
                     >
                       <img src={img} alt={draft.title} className="w-full h-full object-cover" />
@@ -331,7 +331,7 @@ export const PublishMemeModal: React.FC<PublishMemeModalProps> = ({
           />
         </div>
 
-        {/* 3. Category Selector */}
+        {/* 3. Choose Category */}
         <div className="space-y-1.5">
           <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider">
             3. Choose Category
@@ -342,10 +342,10 @@ export const PublishMemeModal: React.FC<PublishMemeModalProps> = ({
                 key={cat}
                 type="button"
                 onClick={() => setCategory(cat)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-150 cursor-pointer hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                   category === cat
-                    ? 'bg-blue-600 text-white shadow-xs'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+                    ? 'bg-[#1463E9] text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-700 hover:bg-[#EFF6FF] hover:text-[#1463E9]'
                 }`}
               >
                 {cat}

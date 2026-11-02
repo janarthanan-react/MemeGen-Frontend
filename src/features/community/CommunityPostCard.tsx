@@ -171,11 +171,11 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({
               onClick={handleLikeClick}
               disabled={isLiking}
               aria-label={isLiked ? 'Unlike post' : 'Like post'}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:outline-none ${
                 isLiked
                   ? 'bg-rose-50 text-rose-600 border border-rose-200 shadow-2xs'
-                  : 'bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/80'
-              } active:scale-95`}
+                  : 'bg-slate-50 text-slate-600 hover:bg-[#EFF6FF] hover:text-[#1463E9] border border-slate-200/80 shadow-2xs'
+              }`}
             >
               <Heart
                 className={`w-4 h-4 transition-transform ${
@@ -190,7 +190,7 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({
               type="button"
               onClick={() => onOpenComments(post)}
               aria-label="View comments"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/80 transition-all active:scale-95"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-50 text-slate-600 hover:bg-[#EFF6FF] hover:text-[#1463E9] border border-slate-200/80 shadow-2xs hover:shadow-xs transition-all duration-150 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none"
             >
               <MessageCircle className="w-4 h-4 text-slate-400" />
               <span>{post.commentsCount}</span>
@@ -219,9 +219,9 @@ export const CommunityPostCard: React.FC<CommunityPostCardProps> = ({
                 onClick={() => onRemix(post)}
                 aria-label="Remix in Meme Editor"
                 title="Remix in Meme Editor"
-                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 border-blue-200"
+                className="text-[#1463E9] hover:text-[#0E52C7] hover:bg-[#EFF6FF] border-[#1463E9]/30 hover:border-[#1463E9]"
               >
-                <Repeat className="w-3.5 h-3.5 text-blue-600" />
+                <Repeat className="w-3.5 h-3.5 text-[#1463E9]" />
               </IconButton>
             )}
           </div>

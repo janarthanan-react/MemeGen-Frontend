@@ -18,6 +18,9 @@ import {
   Star,
   Grid,
   ShieldCheck,
+  Crown,
+  Sparkles,
+  Flame,
 } from 'lucide-react';
 import { TemplateGrid } from '../features/templates/TemplateGrid';
 import { TemplatePreviewModal } from '../features/templates/TemplatePreviewModal';
@@ -96,8 +99,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   <Button
                     variant="primary"
                     size="lg"
-                    rightIcon={<ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />}
-                    className="w-full sm:w-auto shadow-lg shadow-blue-600/30 hover:shadow-xl hover:shadow-blue-500/50 hover:-translate-y-1 hover:scale-105 active:scale-95 group font-semibold"
+                    rightIcon={<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />}
+                    className="w-full sm:w-auto rounded-2xl group font-bold shadow-[0_4px_16px_rgba(20,99,233,0.4)]"
                   >
                     Create Meme Now
                   </Button>
@@ -105,9 +108,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
                 <a href="#templates" className="w-full sm:w-auto">
                   <Button
-                    variant="secondary"
+                    variant="dark"
                     size="lg"
-                    className="w-full sm:w-auto shadow-md hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95 font-semibold text-slate-900"
+                    className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white hover:text-white border-white/25 hover:border-white/50 shadow-sm font-semibold rounded-2xl"
                   >
                     Explore Templates
                   </Button>
@@ -233,8 +236,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 className="absolute right-0 xs:right-1 sm:-right-8 -bottom-3 sm:-bottom-7 w-32 xs:w-36 sm:w-52 rounded-2xl bg-white p-1.5 sm:p-2.5 shadow-2xl shadow-rose-950/40 border-2 border-white rotate-0 sm:rotate-2 hover:rotate-0 hover:scale-105 sm:hover:scale-108 hover:-translate-y-1 sm:hover:-translate-y-2 hover:shadow-rose-500/30 transition-all duration-300 cursor-pointer group z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
               >
                 {/* Comic Rage Emote Badge */}
-                <div className="absolute -top-3.5 -right-2 w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center font-bold text-sm shadow-md animate-bounce z-30">
-                  💢
+                <div className="absolute -top-3.5 -right-2 w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-md animate-bounce z-30">
+                  <Flame className="w-4 h-4 text-white" />
                 </div>
 
                 <div className="relative rounded-xl overflow-hidden bg-slate-900 aspect-square">
@@ -270,7 +273,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 {/* Tag and Action Pill */}
                 <div className="mt-1.5 flex items-center justify-between text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-lg">
                   <span className="flex items-center gap-1">
-                    <span>😡 Kazama</span>
+                    <span>Kazama</span>
                   </span>
                   <span className="text-slate-400 group-hover:text-rose-600 group-hover:translate-x-0.5 transition-all">
                     Remix ↗
@@ -286,12 +289,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
               {/* Top Right Gold Crown Badge */}
               <div className="absolute -top-4 sm:-top-5 right-7 sm:right-12 w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-amber-400 to-amber-300 text-amber-950 flex items-center justify-center shadow-xl shadow-amber-500/30 font-bold text-base sm:text-xl rotate-0 sm:rotate-12 animate-float hover:scale-120 sm:hover:rotate-24 transition-transform duration-200 cursor-pointer border-2 border-white z-30">
-                👑
+                <Crown className="w-5 h-5 text-amber-950" />
               </div>
 
               {/* Top Right Laughing Emoji Badge */}
-              <div className="absolute -top-1 right-0 sm:-right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-md flex items-center justify-center shadow-lg text-lg sm:text-xl rotate-0 sm:rotate-6 animate-pulse-subtle hover:scale-120 sm:hover:rotate-12 transition-transform duration-200 cursor-pointer border border-white/60 z-30">
-                😂
+              <div className="absolute -top-1 right-0 sm:-right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-md flex items-center justify-center shadow-lg rotate-0 sm:rotate-6 animate-pulse-subtle hover:scale-120 sm:hover:rotate-12 transition-transform duration-200 cursor-pointer border border-white/60 z-30">
+                <Smile className="w-5 h-5 text-amber-500" />
               </div>
             </div>
           </div>
@@ -813,7 +816,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       onNavigate('/pricing');
                     }
                   }}
-                  className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-900 font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+                  className="inline-flex items-center gap-2 bg-white hover:bg-[#EFF6FF] text-[#1463E9] hover:text-[#0E52C7] font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
                 >
                   <span>View Pricing Plans</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -841,31 +844,31 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   </div>
                 </div>
 
-                {/* Level Up Kid Card */}
+                {/* Level Up Dog Card */}
                 <div className="absolute -bottom-3 sm:-bottom-6 right-0 sm:-right-6 w-36 sm:w-40 bg-white p-1.5 rounded-xl shadow-2xl rotate-0 sm:rotate-6 hover:rotate-0 hover:scale-105 sm:hover:scale-110 transition-all duration-300 border border-slate-100 cursor-pointer">
                   <div className="relative rounded-lg overflow-hidden aspect-square bg-slate-900">
                     <img
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80"
-                      alt="Level Up"
+                      src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&auto=format&fit=crop&q=80"
+                      alt="Pro Meme Happy Dog"
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute top-1.5 inset-x-1 text-center font-extrabold text-white text-[10px] uppercase drop-shadow">
                       LEVEL UP
                     </div>
                     <div className="absolute bottom-1.5 inset-x-1 text-center font-extrabold text-white text-[10px] uppercase drop-shadow">
-                      LEVEL UP
+                      MUCH PRO
                     </div>
                   </div>
                 </div>
 
                 {/* Floating Gold Crown Badge */}
                 <div className="absolute -top-4 -left-1 sm:-left-3 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-400 text-amber-950 flex items-center justify-center font-bold text-base sm:text-lg shadow-xl rotate-0 sm:-rotate-12 animate-float hover:scale-120 sm:hover:rotate-12 transition-transform cursor-pointer">
-                  👑
+                  <Crown className="w-5 h-5 text-amber-950" />
                 </div>
 
                 {/* Floating Blue Star Badge */}
                 <div className="absolute -top-2 right-0 sm:-right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-blue-500 text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-lg shadow-blue-500/30 rotate-0 sm:rotate-6 animate-float-delayed hover:scale-120 sm:hover:-rotate-12 transition-transform cursor-pointer">
-                  ✦
+                  <Sparkles className="w-4 h-4 text-white" />
                 </div>
               </div>
             </div>

@@ -75,9 +75,9 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
               <button
                 type="button"
                 onClick={onEditClick}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-slate-800 text-xs sm:text-sm font-semibold transition-colors cursor-pointer min-h-[34px] shadow-2xs"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-[#1463E9]/30 hover:border-[#1463E9] hover:bg-[#EFF6FF] text-[#1463E9] hover:text-[#0E52C7] text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer min-h-[36px] shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none"
               >
-                <Edit3 className="w-3.5 h-3.5 text-slate-600" />
+                <Edit3 className="w-3.5 h-3.5 text-[#1463E9]" />
                 <span>Edit Profile</span>
               </button>
 
@@ -85,7 +85,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
                 <button
                   type="button"
                   onClick={onLogout}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 hover:border-rose-300 hover:bg-rose-50 text-slate-600 hover:text-rose-600 text-xs sm:text-sm font-semibold transition-colors cursor-pointer min-h-[34px] shadow-2xs"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-200/90 hover:border-rose-300 hover:bg-rose-50 text-slate-600 hover:text-rose-600 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer min-h-[36px] shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:outline-none"
                   title="Sign out of your account"
                 >
                   <LogOut className="w-3.5 h-3.5 text-rose-500" />

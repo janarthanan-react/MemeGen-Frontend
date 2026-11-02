@@ -57,7 +57,7 @@ export const GifGeneratorPage: React.FC<GifGeneratorPageProps> = ({ onNavigate }
           <button
             type="button"
             onClick={() => (onNavigate ? onNavigate('/') : (window.location.hash = '#home'))}
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-400 hover:text-cyan-400 transition-colors cursor-pointer py-1"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition-all duration-200 active:scale-95 cursor-pointer py-1.5 px-3 rounded-xl hover:bg-white/10"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Home</span>
@@ -78,7 +78,7 @@ export const GifGeneratorPage: React.FC<GifGeneratorPageProps> = ({ onNavigate }
             )}
 
             <Button
-              variant="outline"
+              variant="dark"
               size="sm"
               onClick={() => (onNavigate ? onNavigate('/editor') : (window.location.hash = '#editor'))}
               className="border-white/15 text-slate-200 hover:text-white hover:bg-white/10 text-xs hidden xs:inline-flex"

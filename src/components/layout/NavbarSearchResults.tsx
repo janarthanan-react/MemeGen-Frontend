@@ -154,7 +154,7 @@ export const NavbarSearchResults: React.FC<NavbarSearchResultsProps> = ({
                       onSearchCommunity();
                       onClose();
                     }}
-                    className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 underline cursor-pointer"
+                    className="text-xs font-semibold text-blue-400 hover:text-blue-300 underline cursor-pointer active:scale-95 transition-all duration-150"
                   >
                     Search in Community Memes &rarr;
                   </button>
@@ -172,7 +172,7 @@ export const NavbarSearchResults: React.FC<NavbarSearchResultsProps> = ({
               onViewAll();
               onClose();
             }}
-            className="font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 cursor-pointer"
+            className="font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1 cursor-pointer active:scale-95 transition-all duration-150"
           >
             <span>View all in template gallery</span>
             <ArrowRight className="w-3 h-3" />

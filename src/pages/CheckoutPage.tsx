@@ -139,7 +139,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
           <button
             type="button"
             onClick={() => onNavigate('/pricing')}
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors cursor-pointer py-1"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-500 hover:text-[#1463E9] transition-colors cursor-pointer py-1"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Change Plan / Back to Pricing</span>
@@ -343,13 +343,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('upi')}
-                  className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-xs font-bold transition-all cursor-pointer gap-1.5 ${
+                  className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-xs font-bold transition-all duration-200 cursor-pointer gap-1.5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                     paymentMethod === 'upi'
-                      ? 'border-blue-600 bg-blue-50/80 text-blue-700 shadow-xs'
-                      : 'border-slate-200 hover:border-slate-300 text-slate-600 bg-slate-50/40'
+                      ? 'border-[#1463E9] bg-[#EFF6FF] text-[#1463E9] shadow-xs ring-1 ring-blue-500/20'
+                      : 'border-slate-200 hover:border-[#1463E9]/30 text-slate-700 bg-white hover:bg-[#EFF6FF] hover:text-[#1463E9]'
                   }`}
                 >
-                  <Smartphone className="w-5 h-5 text-blue-600" />
+                  <Smartphone className="w-5 h-5 text-[#1463E9]" />
                   <span>UPI / QR</span>
                 </button>
 
@@ -357,10 +357,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('card')}
-                  className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-xs font-bold transition-all cursor-pointer gap-1.5 ${
+                  className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-xs font-bold transition-all duration-200 cursor-pointer gap-1.5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                     paymentMethod === 'card'
-                      ? 'border-blue-600 bg-blue-50/80 text-blue-700 shadow-xs'
-                      : 'border-slate-200 hover:border-slate-300 text-slate-600 bg-slate-50/40'
+                      ? 'border-[#1463E9] bg-[#EFF6FF] text-[#1463E9] shadow-xs ring-1 ring-blue-500/20'
+                      : 'border-slate-200 hover:border-[#1463E9]/30 text-slate-700 bg-white hover:bg-[#EFF6FF] hover:text-[#1463E9]'
                   }`}
                 >
                   <CreditCard className="w-5 h-5 text-purple-600" />
@@ -371,10 +371,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('netbanking')}
-                  className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-xs font-bold transition-all cursor-pointer gap-1.5 ${
+                  className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-xs font-bold transition-all duration-200 cursor-pointer gap-1.5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                     paymentMethod === 'netbanking'
-                      ? 'border-blue-600 bg-blue-50/80 text-blue-700 shadow-xs'
-                      : 'border-slate-200 hover:border-slate-300 text-slate-600 bg-slate-50/40'
+                      ? 'border-[#1463E9] bg-[#EFF6FF] text-[#1463E9] shadow-xs ring-1 ring-blue-500/20'
+                      : 'border-slate-200 hover:border-[#1463E9]/30 text-slate-700 bg-white hover:bg-[#EFF6FF] hover:text-[#1463E9]'
                   }`}
                 >
                   <Building2 className="w-5 h-5 text-emerald-600" />
@@ -385,10 +385,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('wallet')}
-                  className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-xs font-bold transition-all cursor-pointer gap-1.5 ${
+                  className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-xs font-bold transition-all duration-200 cursor-pointer gap-1.5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                     paymentMethod === 'wallet'
-                      ? 'border-blue-600 bg-blue-50/80 text-blue-700 shadow-xs'
-                      : 'border-slate-200 hover:border-slate-300 text-slate-600 bg-slate-50/40'
+                      ? 'border-[#1463E9] bg-[#EFF6FF] text-[#1463E9] shadow-xs ring-1 ring-blue-500/20'
+                      : 'border-slate-200 hover:border-[#1463E9]/30 text-slate-700 bg-white hover:bg-[#EFF6FF] hover:text-[#1463E9]'
                   }`}
                 >
                   <Wallet className="w-5 h-5 text-amber-600" />
@@ -415,8 +415,8 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                         onClick={() => setUpiApp(app.id as typeof upiApp)}
                         className={`p-3 rounded-xl border text-left cursor-pointer transition-all ${
                           upiApp === app.id
-                            ? 'border-blue-500 bg-blue-50/50 shadow-xs ring-1 ring-blue-500'
-                            : 'border-slate-200 hover:border-slate-300 bg-white'
+                            ? 'border-[#1463E9] bg-[#EFF6FF] shadow-xs ring-1 ring-[#1463E9]'
+                            : 'border-slate-200 hover:border-[#1463E9]/30 bg-white hover:bg-[#EFF6FF]'
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -528,8 +528,8 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                         onClick={() => setSelectedBank(bank.id)}
                         className={`p-3 rounded-xl border text-left cursor-pointer transition-all ${
                           selectedBank === bank.id
-                            ? 'border-blue-500 bg-blue-50/50 ring-1 ring-blue-500 shadow-xs'
-                            : 'border-slate-200 hover:border-slate-300 bg-white'
+                            ? 'border-[#1463E9] bg-[#EFF6FF] ring-1 ring-[#1463E9] shadow-xs'
+                            : 'border-slate-200 hover:border-[#1463E9]/30 bg-white hover:bg-[#EFF6FF]'
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -558,8 +558,8 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                         onClick={() => setSelectedWallet(wal.id)}
                         className={`p-3.5 rounded-xl border text-left cursor-pointer transition-all ${
                           selectedWallet === wal.id
-                            ? 'border-blue-500 bg-blue-50/50 ring-1 ring-blue-500 shadow-xs'
-                            : 'border-slate-200 hover:border-slate-300 bg-white'
+                            ? 'border-[#1463E9] bg-[#EFF6FF] ring-1 ring-[#1463E9] shadow-xs'
+                            : 'border-slate-200 hover:border-[#1463E9]/30 bg-white hover:bg-[#EFF6FF]'
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -638,10 +638,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                   <button
                     type="button"
                     onClick={() => setBillingCycle('yearly')}
-                    className={`px-2 py-1 rounded-lg text-[10px] font-bold cursor-pointer ${
+                    className={`px-2 py-1 rounded-lg text-[10px] font-bold cursor-pointer transition-all duration-150 ${
                       billingCycle === 'yearly'
-                        ? 'bg-blue-600 text-white shadow-xs'
-                        : 'text-slate-500'
+                        ? 'bg-[#1463E9] text-white shadow-xs'
+                        : 'text-slate-500 hover:text-slate-900'
                     }`}
                   >
                     Yr (-20%)
@@ -710,7 +710,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                         key={code}
                         type="button"
                         onClick={() => handleQuickCoupon(code)}
-                        className="text-[10px] font-extrabold text-blue-600 bg-blue-50 hover:bg-blue-100 border border-blue-200/60 px-2 py-0.5 rounded-md cursor-pointer transition-colors"
+                        className="text-[10px] font-extrabold text-[#1463E9] bg-[#EFF6FF] hover:bg-[#DBEAFE] border border-blue-200/60 px-2 py-0.5 rounded-md cursor-pointer transition-colors"
                       >
                         +{code}
                       </button>
@@ -761,7 +761,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                   size="lg"
                   onClick={handleSubmitPayment}
                   disabled={isProcessingPayment}
-                  className="w-full rounded-2xl font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-600/30 cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full rounded-2xl font-bold bg-[#1463E9] hover:bg-[#0E52C7] text-white shadow-[0_4px_16px_rgba(20,99,233,0.38)] hover:shadow-[0_8px_24px_rgba(20,99,233,0.48)] cursor-pointer flex items-center justify-center gap-2"
                 >
                   {isProcessingPayment ? (
                     <>
@@ -779,7 +779,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => onNavigate('/pricing')}
-                  className="w-full text-center text-xs font-semibold text-slate-400 hover:text-slate-600 py-1 cursor-pointer"
+                  className="w-full text-center text-xs font-semibold text-slate-500 hover:text-[#1463E9] py-1 cursor-pointer transition-colors duration-200"
                 >
                   Cancel &amp; Return to Subscriptions
                 </button>

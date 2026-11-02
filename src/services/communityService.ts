@@ -37,7 +37,7 @@ function createInitialSeedPosts(): CommunityPost[] {
     {
       id: 'post-1',
       title: "When someone compliments my code review",
-      caption: "I am not really that special, but thanks anyway! 🚀",
+      caption: "I am not really that special, but thanks anyway!",
       imageUrl: '/shinchan-meme.jpg',
       category: 'Anime',
       author: {
@@ -60,7 +60,7 @@ function createInitialSeedPosts(): CommunityPost[] {
             handle: '@kazama_elite',
             avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80',
           },
-          content: 'Classic Shinchan moment 😂 Great meme!',
+          content: 'Classic Shinchan moment! Great meme.',
           createdAt: new Date(now - 45 * minute).toISOString(),
         },
         {
@@ -195,7 +195,7 @@ function createInitialSeedPosts(): CommunityPost[] {
             handle: '@who_approved_this',
             avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80',
           },
-          content: 'PAGERDUTY SOUNDS INTENSIFY 🚨',
+          content: 'PAGERDUTY SOUNDS INTENSIFY!',
           createdAt: new Date(now - 8 * hour).toISOString(),
         },
         {
@@ -271,7 +271,7 @@ function createInitialSeedPosts(): CommunityPost[] {
             handle: '@paw_coder',
             avatarUrl: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=100&auto=format&fit=crop&q=80',
           },
-          content: 'Promote this cat to Principal Engineer immediately 🐾',
+          content: 'Promote this cat to Principal Engineer immediately.',
           createdAt: new Date(now - 1 * day).toISOString(),
         },
         {

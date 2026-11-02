@@ -42,18 +42,18 @@ export const CommunityBanner: React.FC = () => {
           <button
             type="button"
             onClick={handleStartNow}
-            className="bg-blue-500 hover:bg-blue-400 text-white font-bold text-sm px-7 py-4 rounded-xl shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-400/50 hover:-translate-y-1 hover:scale-105 flex items-center gap-2 transition-all duration-200 cursor-pointer active:scale-95 group"
+            className="bg-[#1463E9] hover:bg-[#0E52C7] text-white font-bold text-sm px-6 sm:px-7 py-3.5 rounded-2xl shadow-[0_4px_16px_rgba(20,99,233,0.4)] hover:shadow-[0_8px_24px_rgba(20,99,233,0.5)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center gap-2.5 transition-all duration-200 cursor-pointer group focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             <Flame className="w-4 h-4 text-cyan-200" />
             <span>Launch Meme Editor Now</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
 
           <a
             href="#discord"
-            className="bg-white/10 hover:bg-[#5865F2] hover:border-[#5865F2] text-white border border-white/20 font-bold text-sm px-6 py-4 rounded-xl transition-all duration-200 flex items-center gap-2 backdrop-blur-xs hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:shadow-[#5865F2]/40 active:scale-95 cursor-pointer"
+            className="bg-white/10 hover:bg-[#5865F2] hover:border-[#5865F2] text-white border border-white/20 font-bold text-sm px-6 py-3.5 rounded-2xl transition-all duration-200 flex items-center gap-2.5 backdrop-blur-sm hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] shadow-sm hover:shadow-lg hover:shadow-[#5865F2]/30 cursor-pointer focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:outline-none group"
           >
-            <MessageSquare className="w-4 h-4 text-[#5865F2] group-hover:text-white" />
+            <MessageSquare className="w-4 h-4 text-indigo-300 group-hover:text-white transition-colors" />
             <span>Join 150K+ Member Discord</span>
           </a>
         </div>

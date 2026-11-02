@@ -86,7 +86,7 @@ export const ImageSequenceManager: React.FC = () => {
               key={preset.ms}
               type="button"
               onClick={() => handleGlobalDelayChange(preset.ms)}
-              className="text-[10px] font-semibold text-slate-300 hover:text-white px-2 py-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
+              className="text-[10px] font-semibold text-slate-300 hover:text-white px-2 py-1 rounded-lg hover:bg-white/10 transition-all duration-150 active:scale-95 cursor-pointer"
             >
               {preset.label} ({preset.ms}ms)
             </button>
@@ -120,7 +120,7 @@ export const ImageSequenceManager: React.FC = () => {
               <button
                 type="button"
                 onClick={() => removeImageFrame(frame.id)}
-                className="text-slate-400 hover:text-rose-400 transition-colors cursor-pointer p-0.5 rounded-md hover:bg-rose-950/40"
+                className="text-slate-400 hover:text-rose-400 transition-all duration-150 cursor-pointer p-0.5 rounded-md hover:bg-rose-950/40 active:scale-90"
                 aria-label={`Remove frame ${index + 1}`}
               >
                 <Trash2 className="w-3.5 h-3.5" />
@@ -160,7 +160,7 @@ export const ImageSequenceManager: React.FC = () => {
                 type="button"
                 disabled={index === 0}
                 onClick={() => reorderImageFrames(index, index - 1)}
-                className="p-1 rounded-md text-slate-400 hover:text-white disabled:opacity-20 disabled:pointer-events-none hover:bg-white/10 cursor-pointer"
+                className="p-1 rounded-md text-slate-400 hover:text-white disabled:opacity-20 disabled:pointer-events-none hover:bg-white/10 cursor-pointer transition-all duration-150 active:scale-90"
                 aria-label="Move frame left"
               >
                 <ChevronLeft className="w-3.5 h-3.5" />
@@ -169,7 +169,7 @@ export const ImageSequenceManager: React.FC = () => {
                 type="button"
                 disabled={index === imageFrames.length - 1}
                 onClick={() => reorderImageFrames(index, index + 1)}
-                className="p-1 rounded-md text-slate-400 hover:text-white disabled:opacity-20 disabled:pointer-events-none hover:bg-white/10 cursor-pointer"
+                className="p-1 rounded-md text-slate-400 hover:text-white disabled:opacity-20 disabled:pointer-events-none hover:bg-white/10 cursor-pointer transition-all duration-150 active:scale-90"
                 aria-label="Move frame right"
               >
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -182,7 +182,7 @@ export const ImageSequenceManager: React.FC = () => {
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className="flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border-2 border-dashed border-white/15 hover:border-cyan-400 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white shrink-0 w-36 aspect-square transition-all duration-200 cursor-pointer group"
+          className="flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border-2 border-dashed border-white/15 hover:border-cyan-400 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white shrink-0 w-36 aspect-square transition-all duration-200 cursor-pointer group hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
         >
           <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
             <Plus className="w-4 h-4 text-cyan-400" />

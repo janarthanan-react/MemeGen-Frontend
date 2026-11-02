@@ -57,10 +57,10 @@ export const GifSettingsPanel: React.FC = () => {
                 key={opt.value}
                 type="button"
                 onClick={() => setSettings({ fps: opt.value })}
-                className={`p-2 rounded-xl border text-center transition-all cursor-pointer ${
+                className={`p-2 rounded-xl border text-center transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                   isSelected
-                    ? 'bg-blue-600/30 border-cyan-400 text-white shadow-sm ring-1 ring-cyan-400/40'
-                    : 'bg-white/5 border-white/10 text-slate-300 hover:text-white hover:bg-white/10'
+                    ? 'bg-[#1463E9] border-blue-400 text-white shadow-xs shadow-blue-500/30 ring-1 ring-blue-400/40'
+                    : 'bg-white/5 border-white/10 text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20'
                 }`}
               >
                 <div className="font-bold text-xs">{opt.label}</div>
@@ -85,10 +85,10 @@ export const GifSettingsPanel: React.FC = () => {
                 key={opt.value}
                 type="button"
                 onClick={() => setSettings({ resolution: opt.value })}
-                className={`p-2 rounded-xl border text-center transition-all cursor-pointer ${
+                className={`p-2 rounded-xl border text-center transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                   isSelected
-                    ? 'bg-blue-600/30 border-cyan-400 text-white shadow-sm ring-1 ring-cyan-400/40'
-                    : 'bg-white/5 border-white/10 text-slate-300 hover:text-white hover:bg-white/10'
+                    ? 'bg-[#1463E9] border-blue-400 text-white shadow-xs shadow-blue-500/30 ring-1 ring-blue-400/40'
+                    : 'bg-white/5 border-white/10 text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20'
                 }`}
               >
                 <div className="font-bold text-xs">{opt.label}</div>
@@ -130,10 +130,10 @@ export const GifSettingsPanel: React.FC = () => {
           <button
             type="button"
             onClick={() => setSettings({ loopCount: settings.loopCount === 0 ? 1 : 0 })}
-            className={`w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl border text-xs font-semibold transition-colors cursor-pointer ${
+            className={`w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl border text-xs font-semibold transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:outline-none ${
               settings.loopCount === 0
-                ? 'bg-purple-950/70 border-purple-500/50 text-purple-200'
-                : 'bg-white/5 border-white/10 text-slate-300 hover:text-white'
+                ? 'bg-purple-950/70 border-purple-500/50 text-purple-200 shadow-xs'
+                : 'bg-white/5 border-white/10 text-slate-300 hover:text-white hover:bg-white/10'
             }`}
           >
             <span>{settings.loopCount === 0 ? 'Infinite Loop (Repeat Forever)' : 'Play Once (No Loop)'}</span>
@@ -150,8 +150,8 @@ export const GifSettingsPanel: React.FC = () => {
         <button
           type="button"
           onClick={() => setSettings({ dither: !settings.dither })}
-          className={`w-11 h-6 rounded-full transition-colors relative cursor-pointer ${
-            settings.dither ? 'bg-cyan-500' : 'bg-slate-700'
+          className={`w-11 h-6 rounded-full transition-all duration-150 relative cursor-pointer active:scale-95 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none ${
+            settings.dither ? 'bg-cyan-500 shadow-xs shadow-cyan-500/40' : 'bg-slate-700'
           }`}
           aria-label="Toggle Floyd-Steinberg Dithering"
         >

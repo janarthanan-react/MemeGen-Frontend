@@ -19,10 +19,10 @@ export const BillingToggle: React.FC<BillingToggleProps> = ({ cycle, onChange })
           type="button"
           onClick={() => onChange('monthly')}
           aria-pressed={cycle === 'monthly'}
-          className={`px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+          className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
             cycle === 'monthly'
-              ? 'bg-white text-slate-900 shadow-sm'
-              : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+              ? 'bg-white text-[#1463E9] shadow-sm font-extrabold'
+              : 'text-slate-600 hover:text-[#1463E9] hover:bg-white/60'
           }`}
         >
           Monthly Billing
@@ -32,10 +32,10 @@ export const BillingToggle: React.FC<BillingToggleProps> = ({ cycle, onChange })
           type="button"
           onClick={() => onChange('yearly')}
           aria-pressed={cycle === 'yearly'}
-          className={`relative px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-2 ${
+          className={`relative px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
             cycle === 'yearly'
-              ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25'
-              : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+              ? 'bg-[#1463E9] text-white shadow-[0_2px_10px_rgba(20,99,233,0.35)]'
+              : 'text-slate-600 hover:text-[#1463E9] hover:bg-white/60'
           }`}
         >
           <span>Yearly Billing</span>

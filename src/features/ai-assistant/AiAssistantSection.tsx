@@ -167,13 +167,12 @@ export const AiAssistantSection: React.FC<AiAssistantSectionProps> = ({ onNaviga
                       key={t}
                       type="button"
                       onClick={() => setTone(t)}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer min-h-[38px] ${
+                      className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 cursor-pointer min-h-[38px] hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                         isActive
-                          ? 'bg-blue-600 text-white shadow-xs scale-102 font-bold'
-                          : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200/70'
+                          ? 'bg-[#1463E9] text-white shadow-xs font-bold'
+                          : 'bg-slate-50 hover:bg-[#EFF6FF] hover:text-[#1463E9] text-slate-700 border border-slate-200/70'
                       }`}
                     >
-                      <span>{info.emoji}</span>
                       <span>{info.label}</span>
                     </button>
                   );
@@ -191,10 +190,10 @@ export const AiAssistantSection: React.FC<AiAssistantSectionProps> = ({ onNaviga
                 <button
                   type="button"
                   onClick={() => setLanguage('en')}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer min-h-[34px] ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer min-h-[34px] active:scale-95 ${
                     language === 'en'
-                      ? 'bg-white text-blue-700 shadow-2xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-white text-[#1463E9] shadow-2xs'
+                      : 'text-slate-600 hover:text-[#1463E9]'
                   }`}
                 >
                   English
@@ -202,10 +201,10 @@ export const AiAssistantSection: React.FC<AiAssistantSectionProps> = ({ onNaviga
                 <button
                   type="button"
                   onClick={() => setLanguage('ta')}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer min-h-[34px] ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer min-h-[34px] active:scale-95 ${
                     language === 'ta'
-                      ? 'bg-white text-blue-700 shadow-2xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-white text-[#1463E9] shadow-2xs'
+                      : 'text-slate-600 hover:text-[#1463E9]'
                   }`}
                 >
                   தமிழ் (Tamil)
@@ -232,7 +231,7 @@ export const AiAssistantSection: React.FC<AiAssistantSectionProps> = ({ onNaviga
                   type="button"
                   onClick={() => setPrompt('')}
                   title="Clear prompt text"
-                  className="absolute top-3.5 right-3.5 p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200/60 transition-colors cursor-pointer"
+                  className="absolute top-3.5 right-3.5 p-1 rounded-lg text-slate-400 hover:text-[#1463E9] hover:bg-[#EFF6FF] transition-colors cursor-pointer"
                   aria-label="Clear prompt"
                 >
                   <X className="w-4 h-4" />
@@ -313,7 +312,7 @@ export const AiAssistantSection: React.FC<AiAssistantSectionProps> = ({ onNaviga
                 key={idea.id}
                 type="button"
                 onClick={() => selectIdea(idea)}
-                className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-600 transition-colors cursor-pointer truncate max-w-[220px]"
+                className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-[#EFF6FF] hover:text-[#1463E9] text-slate-700 transition-colors cursor-pointer truncate max-w-[220px]"
                 title={idea.prompt}
               >
                 {idea.title}

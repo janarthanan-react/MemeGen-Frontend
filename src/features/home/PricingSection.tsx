@@ -34,12 +34,12 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onNavigate }) =>
           <button
             type="button"
             onClick={() => setAnnualBilling(!annualBilling)}
-            className="w-12 h-6 bg-blue-600 rounded-full p-0.5 transition-colors relative cursor-pointer"
+            className="w-12 h-6.5 bg-[#1463E9] rounded-full p-0.5 transition-all relative cursor-pointer focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:ring-offset-2 focus-visible:outline-none hover:opacity-95 active:scale-95"
             aria-label="Toggle annual billing"
           >
             <div
               className={`w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 ${
-                annualBilling ? 'translate-x-6' : 'translate-x-0'
+                annualBilling ? 'translate-x-5.5' : 'translate-x-0'
               }`}
             />
           </button>
@@ -104,7 +104,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onNavigate }) =>
                   document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="w-full py-3 px-4 rounded-xl border border-slate-300 text-slate-800 font-bold text-xs flex items-center justify-center hover:bg-slate-50 hover:border-slate-400 hover:scale-102 active:scale-95 transition-all cursor-pointer"
+              className="w-full py-3 px-4 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs flex items-center justify-center shadow-2xs hover:shadow-xs transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               Get Started Free
             </a>
@@ -178,10 +178,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onNavigate }) =>
                   window.location.href = '/checkout';
                 }
               }}
-              className="w-full py-3.5 px-4 rounded-xl bg-blue-500 hover:bg-blue-400 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-500/40 hover:shadow-xl hover:shadow-blue-400/50 hover:scale-102 active:scale-95 transition-all duration-200 cursor-pointer"
+              className="w-full py-3.5 px-4 rounded-2xl bg-[#1463E9] hover:bg-[#0E52C7] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(20,99,233,0.4)] hover:shadow-[0_8px_24px_rgba(20,99,233,0.5)] transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:outline-none group"
             >
               <span>Upgrade to Pro Now</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>
@@ -243,7 +243,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onNavigate }) =>
                   window.location.href = '/checkout';
                 }
               }}
-              className="w-full py-3 px-4 rounded-xl border border-slate-300 hover:border-slate-400 text-slate-900 font-bold text-xs flex items-center justify-center transition-colors cursor-pointer"
+              className="w-full py-3 px-4 rounded-2xl border border-[#1463E9]/30 hover:border-[#1463E9] bg-white hover:bg-[#EFF6FF] text-[#1463E9] hover:text-[#0E52C7] font-bold text-xs flex items-center justify-center shadow-2xs hover:shadow-xs transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               Start 14-Day Team Trial
             </button>
@@ -262,7 +262,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onNavigate }) =>
               window.location.href = '/pricing';
             }
           }}
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-blue-600 hover:text-blue-700 hover:underline cursor-pointer"
+          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1463E9] hover:text-[#0E52C7] hover:underline cursor-pointer transition-colors duration-200"
         >
           <span>Compare full feature breakdown and FAQ on the Pricing page &rarr;</span>
         </button>

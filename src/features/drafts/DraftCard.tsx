@@ -186,7 +186,7 @@ export const DraftCard: React.FC<DraftCardProps> = ({ draft, onNavigate }) => {
               }}
               aria-label="Draft actions"
               aria-expanded={menuOpen}
-              className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-[#1463E9] hover:bg-[#EFF6FF] transition-all duration-150 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none cursor-pointer"
             >
               <MoreVertical className="w-4 h-4" />
             </button>
@@ -200,7 +200,7 @@ export const DraftCard: React.FC<DraftCardProps> = ({ draft, onNavigate }) => {
                   type="button"
                   role="menuitem"
                   onClick={handleRenameClick}
-                  className="w-full text-left px-2.5 py-1.5 text-xs rounded-lg text-slate-700 hover:bg-slate-100 hover:text-blue-600 font-medium flex items-center gap-2 cursor-pointer transition-colors"
+                  className="w-full text-left px-2.5 py-1.5 text-xs rounded-lg text-slate-700 hover:bg-[#EFF6FF] hover:text-[#1463E9] font-medium flex items-center gap-2 cursor-pointer transition-all duration-150 active:scale-[0.98]"
                 >
                   <Edit2 className="w-3.5 h-3.5 text-slate-400" />
                   Rename
@@ -209,7 +209,7 @@ export const DraftCard: React.FC<DraftCardProps> = ({ draft, onNavigate }) => {
                   type="button"
                   role="menuitem"
                   onClick={handleDuplicate}
-                  className="w-full text-left px-2.5 py-1.5 text-xs rounded-lg text-slate-700 hover:bg-slate-100 hover:text-blue-600 font-medium flex items-center gap-2 cursor-pointer transition-colors"
+                  className="w-full text-left px-2.5 py-1.5 text-xs rounded-lg text-slate-700 hover:bg-[#EFF6FF] hover:text-[#1463E9] font-medium flex items-center gap-2 cursor-pointer transition-all duration-150 active:scale-[0.98]"
                 >
                   <Copy className="w-3.5 h-3.5 text-slate-400" />
                   Duplicate
@@ -219,7 +219,7 @@ export const DraftCard: React.FC<DraftCardProps> = ({ draft, onNavigate }) => {
                   type="button"
                   role="menuitem"
                   onClick={handleDeleteClick}
-                  className="w-full text-left px-2.5 py-1.5 text-xs rounded-lg text-rose-600 hover:bg-rose-50 font-medium flex items-center gap-2 cursor-pointer transition-colors"
+                  className="w-full text-left px-2.5 py-1.5 text-xs rounded-lg text-rose-600 hover:bg-rose-50 font-medium flex items-center gap-2 cursor-pointer transition-all duration-150 active:scale-[0.98]"
                 >
                   <Trash2 className="w-3.5 h-3.5 text-rose-500" />
                   Delete
@@ -239,7 +239,7 @@ export const DraftCard: React.FC<DraftCardProps> = ({ draft, onNavigate }) => {
           <button
             type="button"
             onClick={handleOpenDraft}
-            className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-bold text-xs hover:underline cursor-pointer shrink-0"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold text-[#1463E9] bg-blue-50/70 hover:bg-[#1463E9] hover:text-white transition-all duration-200 ease-out active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] cursor-pointer shrink-0"
           >
             <span>Open</span>
             <ExternalLink className="w-3 h-3" />

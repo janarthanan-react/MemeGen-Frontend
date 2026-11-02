@@ -200,7 +200,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               <img
                 src="/logo.png"
                 alt="MemeHub"
-                className="h-7 sm:h-8.5 md:h-9.5 w-auto object-contain filter drop-shadow-[0_2px_14px_rgba(37,99,235,0.45)] group-hover:drop-shadow-[0_4px_22px_rgba(6,182,212,0.7)] transition-all duration-300 shrink-0"
+                className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto object-contain filter drop-shadow-[0_2px_14px_rgba(37,99,235,0.45)] group-hover:drop-shadow-[0_4px_22px_rgba(6,182,212,0.7)] transition-all duration-300 shrink-0"
               />
             </a>
 
@@ -248,11 +248,18 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           {/* Right: Search, Notifications, Auth */}
           <div className="hidden md:flex items-center gap-1.5 sm:gap-2 xl:gap-2.5 shrink-0">
             {/* Search Input Component with Live Suggestions Dropdown */}
-            <div className={`relative ${isAuthenticated ? 'w-24 lg:w-28 xl:w-36 2xl:w-48 focus-within:w-36 lg:focus-within:w-40 xl:focus-within:w-48 transition-all duration-200' : 'w-32 lg:w-40 xl:w-52 2xl:w-60 transition-all duration-200'}`}>
+            <div
+              className={`relative ${
+                isAuthenticated
+                  ? 'w-36 md:w-44 lg:w-52 xl:w-64 2xl:w-72 transition-all duration-200'
+                  : 'w-44 md:w-52 lg:w-64 xl:w-72 2xl:w-80 transition-all duration-200'
+              }`}
+            >
               <SearchInput
                 variant="dark"
                 shape="pill"
                 size="sm"
+                className="sm:h-9.5 md:h-10 text-xs sm:text-sm"
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
@@ -264,7 +271,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                   setIsSearchFocused(false);
                 }}
                 onKeyDown={handleSearchSubmit}
-                placeholder={isAuthenticated ? 'Search memes...' : 'Search memes, templates...'}
+                placeholder="Search memes, templates..."
                 aria-label="Search memes and templates"
               />
 
@@ -288,11 +295,11 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 onClick={toggleNotifications}
                 aria-label={`View notifications (${unreadCount} unread)`}
                 aria-expanded={isNotificationsOpen}
-                className="hover:text-cyan-300 text-slate-300 shrink-0 relative"
+                className="hover:text-white text-slate-300 shrink-0 relative"
               >
                 <Bell className="w-3.5 h-3.5" />
                 {unreadCount > 0 && (
-                  <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-cyan-400 ring-2 ring-[#071330] shadow-[0_0_8px_rgba(6,182,212,0.8)] animate-pulse" />
+                  <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#1463E9] ring-2 ring-[#071330] shadow-[0_0_8px_rgba(20,99,233,0.8)] animate-pulse" />
                 )}
               </IconButton>
 
@@ -537,7 +544,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                   <Button
                     variant="primary"
                     size="sm"
-                    className="rounded-full shadow-md shadow-blue-600/30 hover:shadow-cyan-500/30 font-semibold"
+                    className="rounded-full font-semibold"
                   >
                     Sign Up
                   </Button>
@@ -588,7 +595,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 className="inline-block py-0.5 cursor-pointer"
                 aria-label="MemeHub Home"
               >
-                <img src="/logo.png" alt="MemeHub" className="h-7.5 w-auto object-contain" />
+                <img src="/logo.png" alt="MemeHub" className="h-9 w-auto object-contain" />
               </a>
               <IconButton
                 variant="dark"
@@ -715,8 +722,8 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                     }}
                     className={`px-3.5 py-3 text-sm font-medium rounded-xl transition-colors min-h-[44px] flex items-center ${
                       isActive
-                        ? 'bg-blue-600/25 text-cyan-300 font-semibold border-l-3 border-cyan-400 pl-3'
-                        : 'text-slate-200 hover:text-cyan-300 hover:bg-white/10'
+                        ? 'bg-blue-600/25 text-white font-semibold border-l-3 border-[#1463E9] pl-3'
+                        : 'text-slate-200 hover:text-white hover:bg-white/10'
                     }`}
                   >
                     {link.label}
@@ -742,7 +749,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                       <p className="text-sm font-bold text-white truncate">
                         {profile?.displayName || authUser?.fullName || 'Meme Creator'}
                       </p>
-                      <p className="text-xs text-cyan-400 truncate">
+                      <p className="text-xs text-blue-300 truncate">
                         @{profile?.username || authUser?.email.split('@')[0] || 'creator'}
                       </p>
                     </div>
@@ -757,9 +764,9 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                         onNavigate('/dashboard');
                       }
                     }}
-                    className="px-3.5 py-3 text-sm font-medium rounded-xl text-slate-200 hover:text-cyan-300 hover:bg-white/10 flex items-center gap-2.5 min-h-[44px]"
+                    className="px-3.5 py-3 text-sm font-medium rounded-xl text-slate-200 hover:text-white hover:bg-white/10 flex items-center gap-2.5 min-h-[44px]"
                   >
-                    <LayoutDashboard className="w-4 h-4 text-cyan-400" />
+                    <LayoutDashboard className="w-4 h-4 text-blue-400" />
                     <span>Creator Dashboard</span>
                   </a>
 
@@ -772,9 +779,9 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                         onNavigate('/profile');
                       }
                     }}
-                    className="px-3.5 py-3 text-sm font-medium rounded-xl text-slate-200 hover:text-cyan-300 hover:bg-white/10 flex items-center gap-2.5 min-h-[44px]"
+                    className="px-3.5 py-3 text-sm font-medium rounded-xl text-slate-200 hover:text-white hover:bg-white/10 flex items-center gap-2.5 min-h-[44px]"
                   >
-                    <User className="w-4 h-4 text-cyan-400" />
+                    <User className="w-4 h-4 text-blue-400" />
                     <span>My Profile</span>
                   </a>
                   <a
@@ -786,9 +793,9 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                         onNavigate('/drafts');
                       }
                     }}
-                    className="px-3.5 py-3 text-sm font-medium rounded-xl text-slate-200 hover:text-cyan-300 hover:bg-white/10 flex items-center gap-2.5 min-h-[44px]"
+                    className="px-3.5 py-3 text-sm font-medium rounded-xl text-slate-200 hover:text-white hover:bg-white/10 flex items-center gap-2.5 min-h-[44px]"
                   >
-                    <Bookmark className="w-4 h-4 text-cyan-400" />
+                    <Bookmark className="w-4 h-4 text-blue-400" />
                     <span>My Drafts</span>
                   </a>
 
@@ -801,7 +808,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                         onNavigate('/pricing');
                       }
                     }}
-                    className="px-3.5 py-3 text-sm font-medium rounded-xl text-slate-200 hover:text-cyan-300 hover:bg-white/10 flex items-center justify-between min-h-[44px]"
+                    className="px-3.5 py-3 text-sm font-medium rounded-xl text-slate-200 hover:text-white hover:bg-white/10 flex items-center justify-between min-h-[44px]"
                   >
                     <div className="flex items-center gap-2.5">
                       <Crown className="w-4 h-4 text-amber-400" />
@@ -823,9 +830,9 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                         onNavigate('/editor');
                       }
                     }}
-                    className="px-3.5 py-3 text-sm font-medium rounded-xl text-slate-200 hover:text-cyan-300 hover:bg-white/10 flex items-center gap-2.5 min-h-[44px]"
+                    className="px-3.5 py-3 text-sm font-medium rounded-xl text-slate-200 hover:text-white hover:bg-white/10 flex items-center gap-2.5 min-h-[44px]"
                   >
-                    <Plus className="w-4 h-4 text-cyan-400" />
+                    <Plus className="w-4 h-4 text-blue-400" />
                     <span>Create New Meme</span>
                   </a>
 

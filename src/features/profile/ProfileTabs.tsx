@@ -39,14 +39,14 @@ export const ProfileTabs: React.FC<ProfileTabsProps> = ({ onNavigate }) => {
   return (
     <div className="w-full space-y-6">
       {/* Tab Navigation Pill Bar */}
-      <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 bg-slate-100 rounded-2xl w-full sm:w-fit overflow-x-auto">
+      <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 bg-slate-100 rounded-2xl w-full sm:w-fit overflow-x-auto shadow-inner">
         <button
           type="button"
           onClick={() => setActiveTab('overview')}
-          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
+          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 cursor-pointer whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
             activeTab === 'overview'
-              ? 'bg-white text-blue-600 shadow-xs'
-              : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+              ? 'bg-white text-[#1463E9] shadow-xs ring-1 ring-slate-200/60'
+              : 'text-slate-600 hover:text-[#1463E9] hover:bg-white/60'
           }`}
           aria-selected={activeTab === 'overview'}
           role="tab"
@@ -58,17 +58,17 @@ export const ProfileTabs: React.FC<ProfileTabsProps> = ({ onNavigate }) => {
         <button
           type="button"
           onClick={() => setActiveTab('drafts')}
-          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
+          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 cursor-pointer whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
             activeTab === 'drafts'
-              ? 'bg-white text-blue-600 shadow-xs'
-              : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+              ? 'bg-white text-[#1463E9] shadow-xs ring-1 ring-slate-200/60'
+              : 'text-slate-600 hover:text-[#1463E9] hover:bg-white/60'
           }`}
           aria-selected={activeTab === 'drafts'}
           role="tab"
         >
           <Bookmark className="w-4 h-4 shrink-0" />
           <span>My Drafts</span>
-          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700 font-bold ml-0.5">
+          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-blue-100 text-[#1463E9] font-bold ml-0.5">
             {drafts.length}
           </span>
         </button>
@@ -76,10 +76,10 @@ export const ProfileTabs: React.FC<ProfileTabsProps> = ({ onNavigate }) => {
         <button
           type="button"
           onClick={() => setActiveTab('published')}
-          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
+          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 cursor-pointer whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
             activeTab === 'published'
-              ? 'bg-white text-blue-600 shadow-xs'
-              : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+              ? 'bg-white text-[#1463E9] shadow-xs ring-1 ring-slate-200/60'
+              : 'text-slate-600 hover:text-[#1463E9] hover:bg-white/60'
           }`}
           aria-selected={activeTab === 'published'}
           role="tab"
@@ -94,10 +94,10 @@ export const ProfileTabs: React.FC<ProfileTabsProps> = ({ onNavigate }) => {
         <button
           type="button"
           onClick={() => setActiveTab('subscription')}
-          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
+          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 cursor-pointer whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
             activeTab === 'subscription'
-              ? 'bg-white text-blue-600 shadow-xs'
-              : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+              ? 'bg-white text-[#1463E9] shadow-xs ring-1 ring-slate-200/60'
+              : 'text-slate-600 hover:text-[#1463E9] hover:bg-white/60'
           }`}
           aria-selected={activeTab === 'subscription'}
           role="tab"
@@ -136,7 +136,7 @@ export const ProfileTabs: React.FC<ProfileTabsProps> = ({ onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => setActiveTab('drafts')}
-                  className="text-xs sm:text-sm font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 cursor-pointer shrink-0"
+                  className="text-xs sm:text-sm font-bold text-[#1463E9] hover:text-[#0E52C7] flex items-center gap-1 cursor-pointer shrink-0 transition-colors duration-200"
                 >
                   <span>See all ({drafts.length})</span>
                   <ArrowRight className="w-3.5 h-3.5" />

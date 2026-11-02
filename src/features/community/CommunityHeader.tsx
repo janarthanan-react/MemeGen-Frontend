@@ -117,10 +117,10 @@ export const CommunityHeader: React.FC<CommunityHeaderProps> = ({
             <button
               type="button"
               onClick={() => onSortChange('trending')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-150 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-95 ${
                 sortBy === 'trending'
-                  ? 'bg-white text-blue-600 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-white text-[#1463E9] shadow-xs ring-1 ring-slate-200/60 font-bold'
+                  : 'text-slate-600 hover:text-[#1463E9] hover:bg-white/60'
               }`}
             >
               <Flame className="w-3.5 h-3.5" />
@@ -130,10 +130,10 @@ export const CommunityHeader: React.FC<CommunityHeaderProps> = ({
             <button
               type="button"
               onClick={() => onSortChange('latest')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-150 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-95 ${
                 sortBy === 'latest'
-                  ? 'bg-white text-blue-600 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-white text-[#1463E9] shadow-xs ring-1 ring-slate-200/60 font-bold'
+                  : 'text-slate-600 hover:text-[#1463E9] hover:bg-white/60'
               }`}
             >
               <Clock className="w-3.5 h-3.5" />
@@ -143,10 +143,10 @@ export const CommunityHeader: React.FC<CommunityHeaderProps> = ({
             <button
               type="button"
               onClick={() => onSortChange('most-liked')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-150 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-95 ${
                 sortBy === 'most-liked'
-                  ? 'bg-white text-blue-600 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-white text-[#1463E9] shadow-xs ring-1 ring-slate-200/60 font-bold'
+                  : 'text-slate-600 hover:text-[#1463E9] hover:bg-white/60'
               }`}
             >
               <Heart className="w-3.5 h-3.5" />
@@ -169,10 +169,10 @@ export const CommunityHeader: React.FC<CommunityHeaderProps> = ({
                 key={cat}
                 type="button"
                 onClick={() => onSelectCategory(cat)}
-                className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 transition-all ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 transition-all duration-150 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                   isSelected
-                    ? 'bg-blue-600 text-white shadow-xs'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+                    ? 'bg-[#1463E9] text-white shadow-[0_2px_8px_rgba(20,99,233,0.35)]'
+                    : 'bg-white border border-slate-200 text-slate-700 hover:bg-[#EFF6FF] hover:text-[#1463E9] hover:border-[#1463E9]/30 shadow-2xs'
                 }`}
               >
                 {cat}

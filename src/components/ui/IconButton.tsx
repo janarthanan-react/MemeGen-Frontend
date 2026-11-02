@@ -24,21 +24,21 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     ref
   ) => {
     const baseStyles =
-      'inline-flex items-center justify-center rounded-xl transition-all duration-200 select-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-95 shrink-0';
+      'inline-flex items-center justify-center rounded-xl transition-all duration-200 ease-out select-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1463E9] disabled:opacity-45 disabled:cursor-not-allowed disabled:pointer-events-none disabled:transform-none disabled:shadow-none hover:-translate-y-0.5 active:translate-y-0 active:scale-95 shrink-0';
 
     const variants = {
       primary:
-        'bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/30 border border-blue-500/20 active:bg-blue-700',
+        'bg-[#1463E9] hover:bg-[#0E52C7] text-white shadow-[0_2px_8px_-2px_rgba(20,99,233,0.38)] hover:shadow-[0_6px_18px_-3px_rgba(20,99,233,0.48)] border border-[#2B7AF7]/40 active:bg-[#0B43A6]',
       secondary:
-        'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-2xs hover:border-slate-300 hover:text-slate-900 active:bg-slate-100',
+        'bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1463E9] hover:text-[#0E52C7] border border-blue-200/80 shadow-2xs hover:shadow-xs active:bg-blue-200/70',
       outline:
-        'bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 active:bg-slate-200/60',
+        'bg-white hover:bg-[#EFF6FF] border border-[#1463E9]/30 hover:border-[#1463E9] text-[#1463E9] hover:text-[#0E52C7] shadow-2xs hover:shadow-xs active:bg-blue-100/70',
       ghost:
-        'bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 active:bg-slate-200/60',
+        'bg-transparent text-slate-600 hover:text-[#1463E9] hover:bg-[#EFF6FF] active:bg-blue-100/70',
       danger:
-        'bg-rose-50 text-rose-600 hover:bg-rose-100 hover:text-rose-700 border border-rose-200/80 active:bg-rose-200',
+        'bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white border border-rose-200/80 hover:border-rose-600 shadow-2xs hover:shadow-rose-600/25 active:bg-rose-700',
       dark:
-        'bg-white/10 hover:bg-white/20 text-white border border-white/15 backdrop-blur-md active:bg-white/5',
+        'bg-white/10 hover:bg-white/20 text-white border border-white/15 hover:border-white/30 backdrop-blur-md shadow-2xs hover:shadow-xs active:bg-white/5',
     };
 
     const sizes = {

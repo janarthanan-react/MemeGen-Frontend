@@ -82,7 +82,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
           <button
             type="button"
             onClick={() => onNavigate('/')}
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors cursor-pointer py-1"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-500 hover:text-[#1463E9] transition-all duration-200 active:scale-95 cursor-pointer py-1 px-2.5 rounded-xl hover:bg-[#EFF6FF]"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Home</span>
@@ -91,7 +91,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ onNavigate }) => {
           <button
             type="button"
             onClick={() => onNavigate('/drafts')}
-            className="text-xs font-semibold text-blue-600 hover:underline cursor-pointer"
+            className="text-xs font-semibold text-[#1463E9] hover:underline cursor-pointer active:scale-95 transition-all duration-200 py-1 px-2.5 rounded-xl hover:bg-[#EFF6FF]"
           >
             Go to My Drafts ({drafts.length}) &rarr;
           </button>

@@ -191,7 +191,7 @@ export const SubscriptionManagement: React.FC<SubscriptionManagementProps> = ({
               <button
                 type="button"
                 onClick={handleSwitchToYearly}
-                className="font-bold text-blue-600 hover:text-blue-700 bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-200/60 cursor-pointer transition-colors"
+                className="font-bold text-[#1463E9] hover:text-[#0E52C7] bg-[#EFF6FF] hover:bg-[#DBEAFE] px-3.5 py-1.5 rounded-xl border border-blue-200/60 cursor-pointer transition-all duration-200 active:scale-95 hover:-translate-y-0.5"
               >
                 Switch to Yearly (Save 20%) &rarr;
               </button>
@@ -204,14 +204,14 @@ export const SubscriptionManagement: React.FC<SubscriptionManagementProps> = ({
                   <button
                     type="button"
                     onClick={handleCancel}
-                    className="px-2.5 py-1 bg-rose-600 text-white font-bold rounded-lg hover:bg-rose-700 cursor-pointer"
+                    className="px-2.5 py-1 bg-rose-600 text-white font-bold rounded-lg hover:bg-rose-700 active:bg-rose-800 cursor-pointer transition-all duration-200 active:scale-95"
                   >
                     Yes, Cancel
                   </button>
                   <button
                     type="button"
                     onClick={() => setConfirmCancelOpen(false)}
-                    className="px-2.5 py-1 text-slate-600 font-bold hover:bg-slate-200/60 rounded-lg cursor-pointer"
+                    className="px-2.5 py-1 text-slate-700 font-bold hover:bg-[#EFF6FF] hover:text-[#1463E9] rounded-lg cursor-pointer transition-all duration-200 active:scale-95"
                   >
                     Keep
                   </button>
@@ -220,7 +220,7 @@ export const SubscriptionManagement: React.FC<SubscriptionManagementProps> = ({
                 <button
                   type="button"
                   onClick={() => setConfirmCancelOpen(true)}
-                  className="font-semibold text-rose-600 hover:text-rose-700 hover:underline cursor-pointer py-1 px-2"
+                  className="font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-lg py-1 px-2 cursor-pointer active:scale-95 transition-all duration-200"
                 >
                   Cancel Subscription (Demo)
                 </button>

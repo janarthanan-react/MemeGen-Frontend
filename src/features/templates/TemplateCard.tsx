@@ -33,10 +33,10 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
         }
       }}
       aria-label={`Preview template ${template.name}`}
-      className={`group cursor-pointer flex flex-col bg-white rounded-2xl border transition-all duration-200 overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 select-none ${
+      className={`group cursor-pointer flex flex-col bg-white rounded-2xl border transition-all duration-200 overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:ring-offset-2 select-none ${
         isSelected
-          ? 'border-blue-600 ring-2 ring-blue-600/30 shadow-lg -translate-y-1'
-          : 'border-slate-200/90 hover:border-blue-400 hover:shadow-xl hover:-translate-y-1.5'
+          ? 'border-[#1463E9] ring-2 ring-blue-600/30 shadow-lg -translate-y-1'
+          : 'border-slate-200/90 hover:border-blue-400 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98]'
       }`}
     >
       {/* Thumbnail Aspect Container */}

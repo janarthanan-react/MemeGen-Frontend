@@ -102,7 +102,7 @@ export const CommentsModal: React.FC<CommentsModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="text-slate-400 hover:text-white p-1 rounded-lg"
+              className="text-slate-400 hover:text-white p-1.5 rounded-lg active:scale-95 transition-all cursor-pointer"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
@@ -130,9 +130,9 @@ export const CommentsModal: React.FC<CommentsModalProps> = ({
             <button
               type="button"
               onClick={() => onLike(post.id)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 shrink-0 hover:-translate-y-0.5 active:scale-95 cursor-pointer focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:outline-none ${
                 isLiked
-                  ? 'bg-rose-500 text-white'
+                  ? 'bg-rose-500 text-white shadow-xs shadow-rose-500/30'
                   : 'bg-slate-800 text-slate-200 hover:bg-slate-700'
               }`}
             >
@@ -156,7 +156,7 @@ export const CommentsModal: React.FC<CommentsModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="text-slate-400 hover:text-slate-700 p-1 rounded-lg transition-colors hidden lg:block"
+              className="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg transition-all duration-150 active:scale-95 cursor-pointer hidden lg:block"
               aria-label="Close comments"
             >
               <X className="w-5 h-5" />

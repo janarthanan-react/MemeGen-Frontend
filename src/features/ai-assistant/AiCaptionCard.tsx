@@ -34,7 +34,6 @@ export const AiCaptionCard: React.FC<AiCaptionCardProps> = ({
       {/* Top Meta: Tone & Language */}
       <div className="flex items-center justify-between gap-2 mb-3">
         <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-          <span>{toneInfo.emoji}</span>
           <span>{toneInfo.label}</span>
         </div>
 
@@ -73,21 +72,21 @@ export const AiCaptionCard: React.FC<AiCaptionCardProps> = ({
             <button
               type="button"
               onClick={() => handleUseInEditor('replace')}
-              className="flex-1 px-2.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-xs transition-colors cursor-pointer text-center"
+              className="flex-1 px-2.5 py-1.5 bg-[#1463E9] hover:bg-[#0E52C7] text-white font-semibold rounded-lg text-xs transition-all duration-200 active:scale-95 cursor-pointer text-center"
             >
               Replace Active Text
             </button>
             <button
               type="button"
               onClick={() => handleUseInEditor('new')}
-              className="flex-1 px-2.5 py-1.5 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-semibold rounded-lg text-xs transition-colors cursor-pointer text-center"
+              className="flex-1 px-2.5 py-1.5 bg-white hover:bg-[#EFF6FF] text-[#1463E9] hover:text-[#0E52C7] border border-[#1463E9]/30 hover:border-[#1463E9] font-semibold rounded-lg text-xs transition-all duration-200 active:scale-95 cursor-pointer text-center"
             >
               Add as New Layer
             </button>
             <button
               type="button"
               onClick={() => setShowConfirmReplace(false)}
-              className="px-2 py-1.5 text-slate-500 hover:text-slate-800 font-medium text-xs transition-colors cursor-pointer"
+              className="px-2 py-1.5 text-slate-500 hover:text-[#1463E9] hover:bg-[#EFF6FF] font-medium text-xs rounded-lg transition-colors cursor-pointer active:scale-95"
             >
               Cancel
             </button>

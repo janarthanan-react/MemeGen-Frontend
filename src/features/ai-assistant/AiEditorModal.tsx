@@ -175,13 +175,12 @@ export const AiEditorModal: React.FC<AiEditorModalProps> = ({ isOpen, onClose })
                   key={t}
                   type="button"
                   onClick={() => setTone(t)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 cursor-pointer transition-colors ${
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 cursor-pointer transition-all duration-150 hover:-translate-y-0.5 active:scale-95 ${
                     isActive
-                      ? 'bg-blue-600 text-white shadow-2xs'
-                      : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                      ? 'bg-[#1463E9] text-white shadow-2xs font-bold'
+                      : 'bg-slate-100 hover:bg-[#EFF6FF] hover:text-[#1463E9] text-slate-700'
                   }`}
                 >
-                  <span>{info.emoji}</span>
                   <span>{info.label}</span>
                 </button>
               );
@@ -193,8 +192,8 @@ export const AiEditorModal: React.FC<AiEditorModalProps> = ({ isOpen, onClose })
             <button
               type="button"
               onClick={() => setLanguage('en')}
-              className={`px-2 py-1 rounded text-xs font-bold transition-all cursor-pointer ${
-                language === 'en' ? 'bg-white text-blue-700 shadow-2xs' : 'text-slate-600'
+              className={`px-2 py-1 rounded text-xs font-bold transition-all duration-150 active:scale-95 cursor-pointer ${
+                language === 'en' ? 'bg-white text-[#1463E9] shadow-2xs' : 'text-slate-600 hover:text-[#1463E9]'
               }`}
             >
               EN
@@ -202,8 +201,8 @@ export const AiEditorModal: React.FC<AiEditorModalProps> = ({ isOpen, onClose })
             <button
               type="button"
               onClick={() => setLanguage('ta')}
-              className={`px-2 py-1 rounded text-xs font-bold transition-all cursor-pointer ${
-                language === 'ta' ? 'bg-white text-blue-700 shadow-2xs' : 'text-slate-600'
+              className={`px-2 py-1 rounded text-xs font-bold transition-all duration-150 active:scale-95 cursor-pointer ${
+                language === 'ta' ? 'bg-white text-[#1463E9] shadow-2xs' : 'text-slate-600 hover:text-[#1463E9]'
               }`}
             >
               தமிழ்
@@ -220,7 +219,7 @@ export const AiEditorModal: React.FC<AiEditorModalProps> = ({ isOpen, onClose })
             <button
               type="button"
               onClick={handleRandomize}
-              className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1 cursor-pointer"
+              className="text-xs font-semibold text-[#1463E9] hover:text-[#0E52C7] flex items-center gap-1 cursor-pointer active:scale-95 transition-all duration-150"
             >
               <Shuffle className="w-3 h-3" />
               <span>Random Prompt</span>
@@ -265,7 +264,7 @@ export const AiEditorModal: React.FC<AiEditorModalProps> = ({ isOpen, onClose })
                 type="button"
                 onClick={generateCaptions}
                 disabled={isLoading}
-                className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1 cursor-pointer"
+                className="text-xs font-semibold text-[#1463E9] hover:text-[#0E52C7] flex items-center gap-1 cursor-pointer"
               >
                 <RefreshCw className={`w-3 h-3 ${isLoading ? 'animate-spin' : ''}`} />
                 <span>Regenerate</span>
@@ -311,7 +310,7 @@ export const AiEditorModal: React.FC<AiEditorModalProps> = ({ isOpen, onClose })
                         type="button"
                         onClick={() => copyCaption(caption)}
                         title="Copy to clipboard"
-                        className="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-600 transition-colors cursor-pointer text-xs flex items-center gap-1"
+                        className="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-[#EFF6FF] hover:border-[#1463E9]/30 text-slate-700 hover:text-[#1463E9] transition-colors cursor-pointer text-xs flex items-center gap-1"
                       >
                         {isCopied ? (
                           <>

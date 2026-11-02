@@ -77,10 +77,10 @@ export const WeeklyContest: React.FC = () => {
         <button
           type="button"
           onClick={handleEnterContest}
-          className="self-center md:self-auto bg-amber-400 hover:bg-amber-300 text-amber-950 font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-lg shadow-amber-400/20 flex items-center gap-2 transition-all cursor-pointer active:scale-95"
+          className="self-center md:self-auto bg-amber-400 hover:bg-amber-300 text-amber-950 font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-[0_2px_10px_rgba(245,158,11,0.3)] hover:shadow-[0_6px_18px_rgba(245,158,11,0.4)] flex items-center gap-2 transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:outline-none"
         >
           <Trophy className="w-4 h-4" />
-          <span>Enter Next Week's Contest</span>
+          <span>Enter Next Week&apos;s Contest</span>
         </button>
       </div>
 
@@ -142,10 +142,10 @@ export const WeeklyContest: React.FC = () => {
             <button
               type="button"
               onClick={handleVote}
-              className={`w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer min-h-[44px] ${
+              className={`w-full sm:w-auto px-4.5 py-2.5 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 cursor-pointer min-h-[44px] focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:outline-none ${
                 voted
-                  ? 'bg-rose-500 text-white shadow-md shadow-rose-500/30'
-                  : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
+                  ? 'bg-rose-500 hover:bg-rose-600 text-white shadow-[0_2px_10px_rgba(244,63,94,0.4)]'
+                  : 'bg-white/10 hover:bg-white/20 text-white border border-white/20 shadow-xs'
               }`}
             >
               <Heart className={`w-3.5 h-3.5 ${voted ? 'fill-white' : ''}`} />

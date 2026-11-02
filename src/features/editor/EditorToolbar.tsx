@@ -125,12 +125,12 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
         <button
           type="button"
           onClick={onBack}
-          className="flex items-center justify-center gap-1.5 p-2 sm:px-2.5 sm:py-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors text-xs sm:text-sm font-semibold cursor-pointer shrink-0 min-w-[36px] min-h-[36px]"
+          className="flex items-center justify-center gap-1.5 p-2 sm:px-2.5 sm:py-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-150 text-xs sm:text-sm font-semibold cursor-pointer shrink-0 min-w-[36px] min-h-[36px] whitespace-nowrap flex-nowrap focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
           title="Back to Gallery / Home"
           aria-label="Back to Gallery"
         >
           <ArrowLeft className="w-4 h-4 shrink-0" />
-          <span className="hidden md:inline">Back</span>
+          <span className="hidden md:inline whitespace-nowrap">Back</span>
         </button>
 
         <div className="h-5 w-[1px] bg-white/15 hidden sm:block shrink-0" />
@@ -190,18 +190,18 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
       </div>
 
       {/* Right: History, Reset, Template Switch & Export Actions */}
-      <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2 shrink-0">
+      <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2 shrink-0 flex-nowrap whitespace-nowrap">
         {/* Undo Button */}
         <button
           type="button"
           onClick={undo}
           disabled={!canUndo}
-          className="p-1.5 xs:p-2 sm:px-2.5 sm:py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-medium"
+          className="p-1.5 xs:p-2 sm:px-2.5 sm:py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-150 cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-medium focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none whitespace-nowrap shrink-0"
           title="Undo (Ctrl+Z)"
           aria-label="Undo last change"
         >
           <Undo2 className="w-4 h-4 shrink-0" />
-          <span className="hidden xl:inline">Undo</span>
+          <span className="hidden xl:inline whitespace-nowrap">Undo</span>
         </button>
 
         {/* Redo Button */}
@@ -209,24 +209,24 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
           type="button"
           onClick={redo}
           disabled={!canRedo}
-          className="p-1.5 xs:p-2 sm:px-2.5 sm:py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-medium"
+          className="p-1.5 xs:p-2 sm:px-2.5 sm:py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-150 cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-medium focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none whitespace-nowrap shrink-0"
           title="Redo (Ctrl+Y)"
           aria-label="Redo last change"
         >
           <Redo2 className="w-4 h-4 shrink-0" />
-          <span className="hidden xl:inline">Redo</span>
+          <span className="hidden xl:inline whitespace-nowrap">Redo</span>
         </button>
 
         {/* Reset Button */}
         <button
           type="button"
           onClick={() => setIsResetModalOpen(true)}
-          className="p-1.5 xs:p-2 sm:px-2.5 sm:py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-rose-300 hover:border-rose-500/40 hover:bg-rose-500/10 transition-all cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-medium"
+          className="p-1.5 xs:p-2 sm:px-2.5 sm:py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-rose-300 hover:border-rose-500/40 hover:bg-rose-500/10 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-150 cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-medium focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:outline-none whitespace-nowrap shrink-0"
           title="Reset Meme to Default"
           aria-label="Reset meme to template defaults"
         >
           <RotateCcw className="w-4 h-4 shrink-0" />
-          <span className="hidden lg:inline">Reset</span>
+          <span className="hidden lg:inline whitespace-nowrap">Reset</span>
         </button>
 
         {/* Upload Custom Image Button */}
@@ -234,12 +234,12 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
           <button
             type="button"
             onClick={onOpenUploadModal}
-            className="p-1.5 xs:p-2 sm:px-3 sm:py-1.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white transition-all cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-semibold gap-1.5"
+            className="p-1.5 xs:p-2 sm:px-3 sm:py-1.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/15 text-slate-200 hover:text-white hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-150 cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-semibold gap-1.5 shadow-2xs hover:shadow-xs focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none whitespace-nowrap shrink-0"
             title="Upload Custom Image"
             aria-label="Upload custom image to editor"
           >
             <Upload className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-            <span className="hidden md:inline">Upload</span>
+            <span className="hidden md:inline whitespace-nowrap">Upload</span>
           </button>
         )}
 
@@ -247,11 +247,11 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
         <button
           type="button"
           onClick={() => setIsTemplatePickerOpen(true)}
-          className="p-1.5 xs:p-2 sm:px-3 sm:py-1.5 rounded-xl border border-blue-500/30 bg-blue-600/15 text-blue-200 hover:bg-blue-600/25 transition-all cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-semibold"
+          className="p-1.5 xs:p-2 sm:px-3 sm:py-1.5 rounded-xl border border-blue-500/30 bg-blue-600/15 text-blue-200 hover:bg-blue-600/30 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-150 cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-semibold focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none whitespace-nowrap shrink-0"
           title="Change Template"
         >
           <Layers className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-          <span className="hidden sm:inline">Templates</span>
+          <span className="hidden sm:inline whitespace-nowrap">Templates</span>
         </button>
 
         {/* AI Assistant Button */}
@@ -259,12 +259,12 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
           <button
             type="button"
             onClick={onOpenAiModal}
-            className="p-1.5 xs:p-2 sm:px-3 sm:py-1.5 rounded-xl border border-cyan-500/40 bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-200 hover:text-white transition-all cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-semibold gap-1.5 shadow-2xs"
+            className="p-1.5 xs:p-2 sm:px-3 sm:py-1.5 rounded-xl border border-cyan-500/40 bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-200 hover:text-white hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-150 cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-semibold gap-1.5 shadow-2xs hover:shadow-xs hover:border-cyan-400/60 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none whitespace-nowrap shrink-0"
             title="AI Meme Caption Assistant"
             aria-label="Open AI Caption Assistant"
           >
             <Bot className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
-            <span className="hidden sm:inline">AI Assistant</span>
+            <span className="hidden sm:inline whitespace-nowrap">AI Assistant</span>
           </button>
         )}
 
@@ -273,36 +273,36 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
           type="button"
           onClick={handleSaveDraft}
           disabled={isSavingDraft}
-          className="p-1.5 xs:p-2 sm:px-3 sm:py-1.5 rounded-xl border border-white/10 hover:border-cyan-400/50 bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white transition-all cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-semibold gap-1.5"
+          className="p-1.5 xs:p-2 sm:px-3 sm:py-1.5 rounded-xl border border-white/10 hover:border-cyan-400/50 bg-white/5 hover:bg-white/15 text-slate-200 hover:text-white hover:-translate-y-0.5 active:translate-y-0 active:scale-95 disabled:opacity-40 disabled:pointer-events-none transition-all duration-150 cursor-pointer flex items-center justify-center min-w-[34px] min-h-[34px] text-xs font-semibold gap-1.5 shadow-2xs hover:shadow-xs focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none whitespace-nowrap shrink-0"
           title="Save to My Drafts"
           aria-label="Save draft"
         >
           {isSavingDraft ? (
-            <Loader2 className="w-3.5 h-3.5 animate-spin text-cyan-400" />
+            <Loader2 className="w-3.5 h-3.5 animate-spin text-cyan-400 shrink-0" />
           ) : (
             <Bookmark className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
           )}
-          <span className="hidden md:inline">Save Draft</span>
+          <span className="hidden md:inline whitespace-nowrap">Save Draft</span>
         </button>
 
         {/* Download & Multi-Format Export Group */}
-        <div className="relative flex items-center">
+        <div className="relative flex items-center shrink-0 flex-nowrap whitespace-nowrap">
           <button
             type="button"
             onClick={onExport}
             disabled={isExporting}
-            className="px-2.5 xs:px-3 sm:px-4 py-1.5 sm:py-2 rounded-l-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-600/30 hover:shadow-cyan-500/40 active:scale-95 disabled:opacity-60 transition-all duration-200 flex items-center justify-center gap-1 sm:gap-2 cursor-pointer min-h-[34px] shrink-0"
+            className="px-2.5 xs:px-3 sm:px-4 py-1.5 sm:py-2 rounded-l-xl bg-[#1463E9] hover:bg-[#0E52C7] text-white font-bold text-xs sm:text-sm shadow-[0_2px_12px_rgba(20,99,233,0.35)] hover:shadow-[0_6px_20px_rgba(20,99,233,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none transition-all duration-150 flex items-center justify-center gap-1 sm:gap-2 cursor-pointer min-h-[34px] shrink-0 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none"
             aria-label="Export meme image"
           >
             {isExporting ? (
               <>
-                <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin text-white" />
-                <span className="hidden xs:inline">Exporting...</span>
+                <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin text-white shrink-0" />
+                <span className="hidden xs:inline whitespace-nowrap">Exporting...</span>
               </>
             ) : (
               <>
-                <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                <span>Download</span>
+                <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span className="whitespace-nowrap font-bold">Download</span>
               </>
             )}
           </button>
@@ -312,12 +312,12 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
             type="button"
             onClick={() => setIsExportMenuOpen((prev) => !prev)}
             disabled={isExporting}
-            className="px-1.5 py-1.5 sm:py-2 rounded-r-xl bg-blue-700 hover:bg-blue-600 text-white border-l border-white/20 transition-colors cursor-pointer min-h-[34px] flex items-center justify-center"
+            className="px-1.5 py-1.5 sm:py-2 rounded-r-xl bg-[#0E52C7] hover:bg-[#0B43A6] text-white border-l border-white/20 transition-all duration-150 cursor-pointer min-h-[34px] flex items-center justify-center hover:-translate-y-0.5 active:translate-y-0 active:scale-95 disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none shrink-0"
             title="More export formats & sharing"
             aria-label="More export options"
             aria-expanded={isExportMenuOpen}
           >
-            <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isExportMenuOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`w-3.5 h-3.5 transition-transform shrink-0 ${isExportMenuOpen ? 'rotate-180' : ''}`} />
           </button>
 
           {/* Export Formats Dropdown Popover */}

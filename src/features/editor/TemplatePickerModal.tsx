@@ -76,7 +76,7 @@ export const TemplatePickerModal: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsTemplatePickerOpen(false)}
-            className="min-w-[38px] min-h-[38px] flex items-center justify-center rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer shrink-0"
+            className="min-w-[38px] min-h-[38px] flex items-center justify-center rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-all duration-150 active:scale-95 cursor-pointer shrink-0"
             aria-label="Close dialog"
           >
             <X className="w-5 h-5" />
@@ -117,9 +117,9 @@ export const TemplatePickerModal: React.FC = () => {
                 key={cat}
                 type="button"
                 onClick={() => setCategory(cat)}
-                className={`px-3 py-1 rounded-full font-medium whitespace-nowrap transition-colors cursor-pointer min-h-[32px] flex items-center ${
+                className={`px-3 py-1 rounded-full font-medium whitespace-nowrap transition-all duration-150 cursor-pointer min-h-[32px] flex items-center hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                   category === cat
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#1463E9] text-white shadow-xs'
                     : 'bg-white/5 text-slate-300 hover:bg-white/10'
                 }`}
               >
@@ -137,7 +137,7 @@ export const TemplatePickerModal: React.FC = () => {
               <div
                 key={t.id}
                 onClick={() => handleSelectTemplate(t)}
-                className={`group cursor-pointer rounded-xl border p-2 flex flex-col justify-between gap-1.5 transition-all hover:-translate-y-0.5 ${
+                className={`group cursor-pointer rounded-xl border p-2 flex flex-col justify-between gap-1.5 transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] ${
                   isCurrent
                     ? 'bg-blue-600/20 border-blue-500 ring-2 ring-blue-500/40'
                     : 'bg-slate-900/60 border-white/10 hover:border-white/25 hover:bg-slate-900'

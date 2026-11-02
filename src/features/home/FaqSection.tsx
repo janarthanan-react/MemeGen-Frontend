@@ -86,13 +86,13 @@ export const FaqSection: React.FC = () => {
               <button
                 type="button"
                 onClick={() => toggleItem(item.id)}
-                className="w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left font-bold text-slate-900 text-sm sm:text-base cursor-pointer group active:scale-[0.99] transition-transform"
+                className="w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left font-bold text-slate-900 text-sm sm:text-base cursor-pointer group active:scale-[0.99] transition-all duration-150 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none"
                 aria-expanded={isOpen}
               >
-                <span className="group-hover:text-blue-600 transition-colors">{item.question}</span>
+                <span className="group-hover:text-[#1463E9] transition-colors">{item.question}</span>
                 <div
                   className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110 ${
-                    isOpen ? 'rotate-180 bg-blue-50 text-blue-600' : 'bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600'
+                    isOpen ? 'rotate-180 bg-[#EFF6FF] text-[#1463E9]' : 'bg-slate-100 text-slate-500 group-hover:bg-[#EFF6FF] group-hover:text-[#1463E9]'
                   }`}
                 >
                   <ChevronDown className="w-4 h-4" />

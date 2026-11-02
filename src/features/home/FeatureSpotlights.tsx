@@ -1,5 +1,23 @@
 import React from 'react';
-import { Type, Smile, Video, CheckCircle2, Zap } from 'lucide-react';
+import {
+  Type,
+  Smile,
+  Video,
+  CheckCircle2,
+  Zap,
+  Flame,
+  Crown,
+  Sparkles,
+  Star,
+  Target,
+  Shield,
+  Heart,
+  Trophy,
+  Rocket,
+  ThumbsUp,
+  Eye,
+  Bell,
+} from 'lucide-react';
 
 export const FeatureSpotlights: React.FC = () => {
   return (
@@ -102,7 +120,7 @@ export const FeatureSpotlights: React.FC = () => {
             Infinite Stickers, Laser Eyes & Reaction Packs
           </h3>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-center lg:text-left max-w-xl">
-            Elevate any photo with classic internet reaction stickers. Add glowing red laser eyes, pixelated thug-life sunglasses, Wojaks, Pepe masks, speech bubbles, and custom emoji layers.
+            Elevate any photo with classic internet reaction stickers. Add glowing red laser eyes, pixelated thug-life sunglasses, Wojaks, Pepe masks, speech bubbles, and custom badge layers.
           </p>
 
           <ul className="space-y-2.5 text-xs text-slate-700 font-medium text-left inline-block">
@@ -133,14 +151,30 @@ export const FeatureSpotlights: React.FC = () => {
 
             {/* Sticker Tray Grid */}
             <div className="grid grid-cols-4 sm:grid-cols-6 gap-2.5 py-4">
-              {['🕶️', '🔥', '👑', '💯', '😂', '💀', '👀', '🚨', '🚀', '⚡', '💥', '🎯'].map((emoji, idx) => (
-                <div
-                  key={idx}
-                  className="w-11 h-11 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-xl hover:scale-125 hover:-rotate-6 hover:bg-amber-50 hover:border-amber-300 hover:shadow-md active:scale-95 transition-all cursor-pointer shadow-2xs"
-                >
-                  {emoji}
-                </div>
-              ))}
+              {[
+                { icon: Flame, color: 'text-amber-500' },
+                { icon: Crown, color: 'text-yellow-500' },
+                { icon: Sparkles, color: 'text-cyan-500' },
+                { icon: Star, color: 'text-amber-400' },
+                { icon: Target, color: 'text-rose-500' },
+                { icon: Shield, color: 'text-blue-500' },
+                { icon: Heart, color: 'text-rose-500' },
+                { icon: Trophy, color: 'text-amber-500' },
+                { icon: Rocket, color: 'text-purple-500' },
+                { icon: ThumbsUp, color: 'text-blue-600' },
+                { icon: Eye, color: 'text-emerald-500' },
+                { icon: Bell, color: 'text-amber-500' },
+              ].map((item, idx) => {
+                const ItemIcon = item.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="w-11 h-11 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:scale-125 hover:-rotate-6 hover:bg-[#EFF6FF] hover:border-[#1463E9]/30 hover:shadow-md active:scale-95 transition-all cursor-pointer shadow-2xs"
+                  >
+                    <ItemIcon className={`w-5 h-5 ${item.color}`} />
+                  </div>
+                );
+              })}
             </div>
 
             <div className="p-3 bg-amber-50/60 rounded-xl border border-amber-100 flex items-center justify-between text-xs text-amber-900 font-medium">
@@ -184,8 +218,8 @@ export const FeatureSpotlights: React.FC = () => {
                   <button
                     key={speed}
                     type="button"
-                    className={`px-2.5 py-1 rounded-md text-[10px] font-bold hover:scale-105 active:scale-95 transition-transform cursor-pointer ${
-                      i === 1 ? 'bg-purple-600 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'
+                    className={`px-2.5 py-1 rounded-lg text-[10px] font-bold hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:outline-none ${
+                      i === 1 ? 'bg-purple-600 text-white shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'
                     }`}
                   >
                     {speed}

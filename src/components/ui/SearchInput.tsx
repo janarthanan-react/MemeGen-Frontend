@@ -103,10 +103,10 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
               onClick={onClear}
               aria-label="Clear search"
               className={cn(
-                'w-7 h-7 flex items-center justify-center rounded-full hover:scale-110 active:scale-95 transition-all cursor-pointer',
+                'w-7 h-7 flex items-center justify-center rounded-full hover:-translate-y-0.5 active:scale-95 transition-all duration-150 cursor-pointer',
                 variant === 'dark'
                   ? 'text-slate-400 hover:text-white hover:bg-white/10'
-                  : 'text-slate-400 hover:text-slate-700 hover:bg-slate-200/80'
+                  : 'text-slate-400 hover:text-[#1463E9] hover:bg-[#EFF6FF]'
               )}
             >
               <X className="w-3.5 h-3.5" />

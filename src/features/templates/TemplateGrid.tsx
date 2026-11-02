@@ -175,10 +175,10 @@ export const TemplateGrid: React.FC = () => {
               key={cat}
               type="button"
               onClick={() => setActiveCategory(cat)}
-              className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 cursor-pointer min-h-[36px] flex items-center ${
+              className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer min-h-[36px] flex items-center hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                 isActive
-                  ? 'bg-blue-600 text-white shadow-sm shadow-blue-600/30 ring-2 ring-blue-600/20'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900'
+                  ? 'bg-[#1463E9] text-white shadow-sm shadow-blue-600/30 ring-2 ring-blue-600/20'
+                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-[#EFF6FF] hover:text-[#1463E9] hover:border-[#1463E9]/30'
               }`}
             >
               {cat}
@@ -193,7 +193,7 @@ export const TemplateGrid: React.FC = () => {
             onClick={() => setShowMoreMenu(!showMoreMenu)}
             aria-expanded={showMoreMenu}
             aria-haspopup="menu"
-            className="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900 flex items-center gap-1 cursor-pointer min-h-[36px]"
+            className="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-[#EFF6FF] hover:text-[#1463E9] hover:border-[#1463E9]/30 flex items-center gap-1 cursor-pointer min-h-[36px] transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
           >
             <span>More</span>
             <ChevronDown className="w-3 h-3" />
@@ -212,7 +212,7 @@ export const TemplateGrid: React.FC = () => {
                     setActiveCategory(item);
                     setShowMoreMenu(false);
                   }}
-                  className="w-full text-left px-2.5 py-1.5 text-xs rounded-lg text-slate-700 hover:bg-slate-100 hover:text-blue-600 font-medium cursor-pointer"
+                  className="w-full text-left px-2.5 py-1.5 text-xs rounded-lg text-slate-700 hover:bg-[#EFF6FF] hover:text-[#1463E9] font-medium cursor-pointer transition-colors active:scale-95"
                 >
                   {item}
                 </button>
@@ -227,13 +227,13 @@ export const TemplateGrid: React.FC = () => {
         <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
           <span className="text-slate-400 font-medium">Active filters:</span>
           {activeCategory && activeCategory !== 'All' && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 font-semibold border border-blue-100">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#EFF6FF] text-[#1463E9] font-semibold border border-blue-200/60">
               Category: {activeCategory}
               <button
                 type="button"
                 onClick={() => setActiveCategory('All')}
                 aria-label={`Remove category filter ${activeCategory}`}
-                className="hover:text-blue-900 cursor-pointer"
+                className="hover:text-[#0E52C7] cursor-pointer p-0.5 rounded hover:bg-blue-100/70 transition-colors active:scale-90"
               >
                 <X className="w-3 h-3" />
               </button>
@@ -241,13 +241,13 @@ export const TemplateGrid: React.FC = () => {
           )}
 
           {searchQuery.trim() && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 font-semibold border border-blue-100">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#EFF6FF] text-[#1463E9] font-semibold border border-blue-200/60">
               Search: &quot;{searchQuery}&quot;
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
                 aria-label="Clear search filter"
-                className="hover:text-blue-900 cursor-pointer"
+                className="hover:text-[#0E52C7] cursor-pointer p-0.5 rounded hover:bg-blue-100/70 transition-colors active:scale-90"
               >
                 <X className="w-3 h-3" />
               </button>
@@ -257,7 +257,7 @@ export const TemplateGrid: React.FC = () => {
           <button
             type="button"
             onClick={resetFilters}
-            className="text-slate-500 hover:text-blue-600 font-semibold underline text-xs cursor-pointer ml-1"
+            className="text-slate-500 hover:text-[#1463E9] font-semibold text-xs cursor-pointer ml-1 px-2 py-0.5 rounded hover:bg-[#EFF6FF] transition-all duration-150 active:scale-95"
           >
             Reset all
           </button>

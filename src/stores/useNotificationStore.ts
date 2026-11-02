@@ -31,7 +31,7 @@ const INITIAL_NOTIFICATIONS: AppNotification[] = [
   {
     id: 'notif-1',
     type: 'trending',
-    title: 'Shin-chan Meme is Trending 🔥',
+    title: 'Shin-chan Meme is Trending',
     message: 'Over 25,000 creators remixed the featured template today. Tap to customize in studio!',
     timestamp: '10m ago',
     isRead: false,
@@ -49,7 +49,7 @@ const INITIAL_NOTIFICATIONS: AppNotification[] = [
   {
     id: 'notif-3',
     type: 'draft',
-    title: 'Draft Auto-Saved 💾',
+    title: 'Draft Auto-Saved',
     message: 'Your canvas workspace is safely cached in your browser. Continue editing anytime.',
     timestamp: '3h ago',
     isRead: true,
@@ -58,7 +58,7 @@ const INITIAL_NOTIFICATIONS: AppNotification[] = [
   {
     id: 'notif-4',
     type: 'system',
-    title: 'Community Feed Active 💬',
+    title: 'Community Feed Active',
     message: 'New viral memes published in Anime & Gaming. Like, comment, and remix your favorites!',
     timestamp: '1d ago',
     isRead: true,

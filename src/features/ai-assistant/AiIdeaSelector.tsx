@@ -65,10 +65,10 @@ export const AiIdeaSelector: React.FC<AiIdeaSelectorProps> = ({
               key={cat.id}
               type="button"
               onClick={() => onSelectCategory(cat.id)}
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 transition-all duration-150 flex items-center gap-1.5 cursor-pointer min-h-[36px] ${
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 transition-all duration-200 flex items-center gap-1.5 cursor-pointer min-h-[36px] hover:-translate-y-0.5 active:scale-95 focus-visible:ring-2 focus-visible:ring-[#1463E9] focus-visible:outline-none ${
                 isActive
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'bg-white hover:bg-slate-100 text-slate-600 border border-slate-200'
+                  ? 'bg-[#1463E9] text-white shadow-xs'
+                  : 'bg-white hover:bg-[#EFF6FF] hover:text-[#1463E9] text-slate-700 border border-slate-200'
               }`}
             >
               {Icon && <Icon className="w-3.5 h-3.5" />}
@@ -89,7 +89,7 @@ export const AiIdeaSelector: React.FC<AiIdeaSelectorProps> = ({
               key={idea.id}
               type="button"
               onClick={() => onSelectIdea(idea)}
-              className="text-left bg-white hover:bg-blue-50/50 border border-slate-200 hover:border-blue-300 rounded-xl p-3.5 shadow-2xs hover:shadow-xs transition-all duration-150 flex flex-col justify-between group cursor-pointer"
+              className="text-left bg-white hover:bg-[#EFF6FF] border border-slate-200 hover:border-[#1463E9]/40 rounded-xl p-3.5 shadow-2xs hover:shadow-xs transition-all duration-200 flex flex-col justify-between group cursor-pointer hover:-translate-y-0.5 active:scale-[0.98]"
             >
               <div className="space-y-1.5 mb-2">
                 <div className="flex items-center justify-between gap-1 text-[11px] text-slate-400 font-semibold">
