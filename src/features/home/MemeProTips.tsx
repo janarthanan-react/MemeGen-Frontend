@@ -35,8 +35,11 @@ const TIPS = [
 export const MemeProTips: React.FC = () => {
   return (
     <section className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-xl" aria-label="Meme Creator Tips">
-      {/* Background glow */}
-      <div className="absolute top-0 right-1/3 w-80 h-80 bg-blue-600/15 rounded-full blur-[100px] pointer-events-none" />
+      {/* Background glow (iOS Safari safe CSS radial gradient) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_320px_at_65%_0%,rgba(37,99,235,0.2),transparent_70%)]"
+      />
 
       <div className="relative z-10 space-y-10">
         {/* Header */}

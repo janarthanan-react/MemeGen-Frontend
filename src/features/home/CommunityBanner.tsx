@@ -16,9 +16,11 @@ export const CommunityBanner: React.FC = () => {
 
   return (
     <section className="relative rounded-3xl bg-gradient-to-r from-[#061841] via-[#092972] to-[#0c399e] text-white p-8 sm:p-14 lg:p-16 overflow-hidden shadow-2xl text-center" aria-label="Join MemeHub Community">
-      {/* Ambient glowing radial effects */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-400/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-500/25 rounded-full blur-[120px] pointer-events-none" />
+      {/* Ambient glowing radial effects (iOS Safari safe CSS radial gradients) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_380px_at_top_left,rgba(6,182,212,0.22),transparent_70%),radial-gradient(circle_380px_at_bottom_right,rgba(59,130,246,0.25),transparent_70%)]"
+      />
 
       <div className="relative z-10 max-w-3xl mx-auto space-y-6">
         {/* Top Badge */}

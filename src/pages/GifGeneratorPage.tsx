@@ -47,9 +47,11 @@ export const GifGeneratorPage: React.FC<GifGeneratorPageProps> = ({ onNavigate }
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 pt-24 sm:pt-28 pb-20 selection:bg-blue-600 selection:text-white relative">
-      {/* Subtle Background Glow Elements */}
-      <div className="absolute top-16 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-32 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Subtle Background Glow Elements (iOS safe radial gradients) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_380px_at_25%_100px,rgba(37,99,235,0.1),transparent_70%),radial-gradient(circle_380px_at_75%_160px,rgba(6,182,212,0.1),transparent_70%)]"
+      />
 
       <Container className="space-y-8 relative z-10">
         {/* Navigation Breadcrumb / Top Bar */}

@@ -36,7 +36,7 @@ export const Badge: React.FC<BadgeProps> = ({
     danger: 'bg-rose-50 text-rose-700 border-rose-200',
     purple: 'bg-purple-50 text-purple-700 border-purple-200',
     outline: 'bg-transparent text-slate-700 border-slate-300',
-    dark: 'bg-white/10 text-cyan-300 border-white/15 backdrop-blur-md shadow-2xs',
+    dark: 'bg-white/10 text-cyan-300 border-white/15 backdrop-blur-md [-webkit-backdrop-filter:blur(12px)] [transform:translateZ(0)] shadow-2xs',
   };
 
   const dotColors = {

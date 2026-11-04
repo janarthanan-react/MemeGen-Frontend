@@ -63,9 +63,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 1. HERO SECTION (Dark Blue Gradient)                           */}
       {/* ============================================================== */}
       <section id="home" className="relative w-full bg-gradient-to-b from-[#071330] via-[#091f58] to-[#0e358e] text-white pt-24 sm:pt-32 pb-24 sm:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden scroll-mt-20">
-        {/* Subtle Ambient Radial Lighting */}
-        <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[600px] h-[600px] bg-blue-500/15 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute top-10 right-10 w-[450px] h-[450px] bg-cyan-400/15 rounded-full blur-[120px] pointer-events-none" />
+        {/* Subtle Ambient Radial Lighting via CSS gradients (iOS Safari & WebKit safe, zero blur rendering artifacts) */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_600px_600px_at_30%_25%,rgba(59,130,246,0.18),transparent_70%),radial-gradient(ellipse_500px_500px_at_85%_15%,rgba(6,182,212,0.16),transparent_65%)]"
+        />
 
         <Container size="lg" cleanPadding>
           <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -82,7 +84,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.12] tracking-tight text-center lg:text-left">
                 Turn Your Ideas <br />
                 Into{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-200">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-200 [-webkit-background-clip:text] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
                   Viral Memes
                 </span>
               </h1>
@@ -150,7 +152,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {/* Right Column: Hero Graphic Preview (Main Shin-chan Card + Down Angry Kazama Card) */}
             <div className="lg:col-span-5 relative flex flex-col items-center justify-center pt-8 lg:pt-0">
               {/* Ambient Radial Neon Halo Behind Main Image */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400/30 via-blue-600/35 to-rose-500/20 rounded-full blur-3xl pointer-events-none scale-125 animate-pulse-subtle" />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 rounded-full pointer-events-none scale-125 animate-pulse-subtle bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.3)_0%,rgba(37,99,235,0.32)_45%,rgba(244,63,94,0.18)_70%,transparent_75%)]"
+              />
 
               {/* Main Straight Meme Canvas Card: SHIN-CHAN */}
               <div
@@ -736,8 +741,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           className="relative bg-gradient-to-r from-[#07246b] via-[#0d3c9e] to-[#1250cf] text-white rounded-3xl p-8 sm:p-12 lg:p-14 overflow-hidden shadow-2xl"
           aria-label="Upgrade to MemeHub Pro"
         >
-          {/* Subtle glow */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none" />
+          {/* Subtle glow (iOS safe radial gradient) */}
+          <div
+            aria-hidden="true"
+            className="absolute top-0 right-0 w-80 h-80 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.18),transparent_70%)]"
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             {/* Left Column: Pro Features Checklist */}

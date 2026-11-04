@@ -53,9 +53,11 @@ export const DraftsPage: React.FC<DraftsPageProps> = ({ onNavigate }) => {
 
         {/* Page Banner Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 bg-gradient-to-br from-[#071330] via-slate-900 to-[#0c1f4a] text-white p-6 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden">
-          {/* Subtle Ambient Decorative Circles */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-1/3 w-60 h-60 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
+          {/* Subtle Ambient Decorative Circles (iOS safe radial gradients) */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_320px_at_top_right,rgba(59,130,246,0.12),transparent_70%),radial-gradient(circle_260px_at_35%_100%,rgba(6,182,212,0.12),transparent_70%)]"
+          />
 
           <div className="relative z-10 space-y-2 max-w-xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 text-cyan-300 text-xs font-semibold border border-blue-400/30">

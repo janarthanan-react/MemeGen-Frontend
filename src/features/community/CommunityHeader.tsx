@@ -47,9 +47,11 @@ export const CommunityHeader: React.FC<CommunityHeaderProps> = ({
     <div className="space-y-6">
       {/* Top Banner Row */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gradient-to-r from-[#071330] via-[#0b2463] to-[#0e358e] text-white p-6 sm:p-8 rounded-3xl border border-blue-500/20 shadow-xl relative overflow-hidden">
-        {/* Glow Effects */}
-        <div className="absolute -top-12 -right-12 w-48 h-48 bg-cyan-400/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
+        {/* Glow Effects (iOS safe radial gradients) */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_220px_at_top_right,rgba(6,182,212,0.22),transparent_70%),radial-gradient(circle_220px_at_bottom_left,rgba(37,99,235,0.25),transparent_70%)]"
+        />
 
         <div className="relative z-10 space-y-2 max-w-xl">
           <div className="flex flex-wrap items-center gap-2">

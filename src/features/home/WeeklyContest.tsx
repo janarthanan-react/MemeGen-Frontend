@@ -55,9 +55,11 @@ export const WeeklyContest: React.FC = () => {
 
   return (
     <section className="bg-gradient-to-br from-slate-900 via-[#0d214d] to-[#071330] text-white rounded-3xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-2xl relative" aria-label="Weekly Meme Contest">
-      {/* Ambient background glows */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/15 rounded-full blur-[120px] pointer-events-none" />
+      {/* Ambient background glows (iOS Safari safe CSS radial gradients) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_380px_at_top_right,rgba(251,191,36,0.14),transparent_70%),radial-gradient(circle_380px_at_bottom_left,rgba(59,130,246,0.18),transparent_70%)]"
+      />
 
       {/* Top Banner Tag */}
       <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-white/10 text-center md:text-left">

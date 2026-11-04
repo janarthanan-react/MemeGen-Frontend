@@ -133,8 +133,11 @@ export const InteractivePlayground: React.FC = () => {
       aria-label="Interactive Meme Playground"
     >
       <div id="playground" className="sr-only" />
-      {/* Background glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Background glow (iOS safe radial gradient) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_380px_at_75%_0%,rgba(59,130,246,0.06),transparent_70%)]"
+      />
 
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto space-y-2 mb-10">
