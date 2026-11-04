@@ -553,7 +553,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
             )}
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Hamburger Button with Smooth Icon Transform & Transition */}
           <div className="flex lg:hidden items-center gap-2">
             <IconButton
               variant="dark"
@@ -562,20 +562,35 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-              className="rounded-xl min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="rounded-xl min-w-[44px] min-h-[44px] flex items-center justify-center transition-all duration-200 active:scale-90"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-slate-200" />}
+              <div className="relative w-5 h-5 flex items-center justify-center">
+                <Menu
+                  className={`w-5 h-5 absolute transition-all duration-300 ease-in-out ${
+                    mobileMenuOpen
+                      ? 'opacity-0 rotate-90 scale-50 pointer-events-none'
+                      : 'opacity-100 rotate-0 scale-100 text-slate-200'
+                  }`}
+                />
+                <X
+                  className={`w-5 h-5 absolute transition-all duration-300 ease-in-out ${
+                    mobileMenuOpen
+                      ? 'opacity-100 rotate-0 scale-100 text-white'
+                      : 'opacity-0 -rotate-90 scale-50 pointer-events-none text-white'
+                  }`}
+                />
+              </div>
             </IconButton>
           </div>
         </div>
       </div>
 
-      {/* Floating Mobile Drawer & Backdrop */}
+      {/* Floating Mobile Drawer & Backdrop with Smooth Spring Entrance */}
       {mobileMenuOpen && (
         <>
           {/* Backdrop */}
           <div
-            className="pointer-events-auto fixed inset-0 bg-slate-950/60 backdrop-blur-xs lg:hidden z-40 transition-opacity animate-in fade-in duration-200"
+            className="pointer-events-auto fixed inset-0 bg-slate-950/60 backdrop-blur-xs lg:hidden z-40 animate-mobile-backdrop-in"
             onClick={closeMobileMenu}
             aria-hidden="true"
           />
@@ -585,14 +600,14 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
             id="mobile-navigation-drawer"
             role="navigation"
             aria-label="Mobile navigation"
-            className="pointer-events-auto relative z-50 lg:hidden max-w-7xl mx-auto mt-2 rounded-2xl bg-[#071330]/95 backdrop-blur-2xl border border-white/15 shadow-2xl p-4 space-y-4 animate-in slide-in-from-top-2 duration-200 max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain pb-safe"
+            className="pointer-events-auto relative z-50 lg:hidden max-w-7xl mx-auto mt-2 rounded-2xl bg-[#071330]/95 backdrop-blur-2xl border border-white/15 shadow-2xl p-4 space-y-4 animate-mobile-menu-in max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain pb-safe"
           >
             {/* Mobile Brand Row */}
             <div className="flex items-center justify-between pb-3 border-b border-white/10">
               <a
                 href="#home"
                 onClick={handleHomeNavigation}
-                className="inline-block py-0.5 cursor-pointer"
+                className="inline-block py-0.5 cursor-pointer hover:scale-105 active:scale-95 transition-transform duration-200"
                 aria-label="MemeHub Home"
               >
                 <img src="/logo.png" alt="MemeHub" className="h-9 w-auto object-contain" />
@@ -602,7 +617,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 size="sm"
                 onClick={closeMobileMenu}
                 aria-label="Close menu"
-                className="rounded-lg text-slate-400 hover:text-white min-w-[40px] min-h-[40px] flex items-center justify-center"
+                className="rounded-lg text-slate-400 hover:text-white min-w-[40px] min-h-[40px] flex items-center justify-center transition-transform duration-200 hover:rotate-90 active:scale-90"
               >
                 <X className="w-4 h-4" />
               </IconButton>
@@ -720,7 +735,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                         onNavigate(link.href);
                       }
                     }}
-                    className={`px-3.5 py-3 text-sm font-medium rounded-xl transition-colors min-h-[44px] flex items-center ${
+                    className={`px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-200 active:scale-[0.98] min-h-[44px] flex items-center ${
                       isActive
                         ? 'bg-blue-600/25 text-white font-semibold border-l-3 border-[#1463E9] pl-3'
                         : 'text-slate-200 hover:text-white hover:bg-white/10'

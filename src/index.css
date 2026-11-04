@@ -320,6 +320,39 @@ input[type="range"]::-moz-range-thumb {
   animation: spin-slow 20s linear infinite;
 }
 
+/* ============================================================== */
+/* Mobile Navbar & Drawer Smooth Transform & Transition Animations */
+/* ============================================================== */
+@keyframes mobile-menu-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes mobile-backdrop-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-mobile-menu-in {
+  animation: mobile-menu-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-mobile-backdrop-in {
+  animation: mobile-backdrop-in 0.22s ease-out forwards;
+  will-change: opacity;
+}
+
 /* Reduced motion preference support */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -330,7 +363,9 @@ input[type="range"]::-moz-range-thumb {
   .animate-float-delayed,
   .animate-pulse-subtle,
   .animate-glow-pulse,
-  .animate-spin-slow {
+  .animate-spin-slow,
+  .animate-mobile-menu-in,
+  .animate-mobile-backdrop-in {
     animation: none !important;
   }
 
