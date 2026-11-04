@@ -200,7 +200,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               <img
                 src="/logo.png"
                 alt="MemeHub"
-                className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto object-contain filter drop-shadow-[0_2px_14px_rgba(37,99,235,0.45)] group-hover:drop-shadow-[0_4px_22px_rgba(6,182,212,0.7)] transition-all duration-300 shrink-0"
+                className="h-[42px] sm:h-11 md:h-12 lg:h-[52px] xl:h-14 w-auto object-contain filter drop-shadow-[0_2px_14px_rgba(37,99,235,0.45)] group-hover:drop-shadow-[0_4px_22px_rgba(6,182,212,0.7)] transition-all duration-300 shrink-0"
               />
             </a>
 
@@ -610,7 +610,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                 className="inline-block py-0.5 cursor-pointer hover:scale-105 active:scale-95 transition-transform duration-200"
                 aria-label="MemeHub Home"
               >
-                <img src="/logo.png" alt="MemeHub" className="h-9 w-auto object-contain" />
+                <img src="/logo.png" alt="MemeHub" className="h-10 sm:h-11 w-auto object-contain" />
               </a>
               <IconButton
                 variant="dark"
