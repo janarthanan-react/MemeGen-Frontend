@@ -89,20 +89,21 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
   },
 
   logout: async () => {
+    // Immediately clear client state so UI updates without waiting for network
+    set({
+      user: null,
+      token: null,
+      isAuthenticated: false,
+      isLoading: false,
+      error: null,
+      isDemoMode: false,
+    });
+    useProfileStore.getState().clearProfile();
+
     try {
       await authService.logout();
-    } finally {
-      set({
-        user: null,
-        token: null,
-        isAuthenticated: false,
-        isLoading: false,
-        error: null,
-        isDemoMode: false,
-      });
-
-      // Clear private profile information
-      useProfileStore.getState().clearProfile();
+    } catch {
+      // Server notification error is non-fatal
     }
   },
 

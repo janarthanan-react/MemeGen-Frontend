@@ -7,7 +7,6 @@ import {
   Zap,
   Flame,
   Crown,
-  Sparkles,
   Star,
   Target,
   Shield,
@@ -154,7 +153,7 @@ export const FeatureSpotlights: React.FC = () => {
               {[
                 { icon: Flame, color: 'text-amber-500' },
                 { icon: Crown, color: 'text-yellow-500' },
-                { icon: Sparkles, color: 'text-cyan-500' },
+                { icon: Zap, color: 'text-cyan-500' },
                 { icon: Star, color: 'text-amber-400' },
                 { icon: Target, color: 'text-rose-500' },
                 { icon: Shield, color: 'text-blue-500' },

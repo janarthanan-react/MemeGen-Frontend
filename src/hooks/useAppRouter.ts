@@ -13,6 +13,7 @@ export type AppRoute =
   | 'checkout'
   | 'payment-success'
   | 'payment-failed'
+  | 'admin'
   | 'not-found';
 
 function getCurrentRoute(): AppRoute {
@@ -94,6 +95,9 @@ function getCurrentRoute(): AppRoute {
     hash === '#payment/cancel'
   ) {
     return 'payment-failed';
+  }
+  if (pathname === '/admin' || hash === '#admin' || pathname.startsWith('/admin')) {
+    return 'admin';
   }
 
   // Known home paths, templates section, AI tools, and root anchor links
@@ -235,6 +239,14 @@ export function useAppRouter() {
     ) {
       window.history.pushState({}, '', '/payment/failed');
       setRoute('payment-failed');
+      if (shouldScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (
+      normalized === '/admin' ||
+      normalized === '#admin' ||
+      normalized.startsWith('/admin')
+    ) {
+      window.history.pushState({}, '', '/admin');
+      setRoute('admin');
       if (shouldScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (
       normalized === '/404' ||

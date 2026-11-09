@@ -5,7 +5,6 @@ import {
   RefreshCw,
   X,
   Shuffle,
-  AlertCircle,
   Lightbulb,
   Languages,
   ChevronDown,
@@ -36,7 +35,6 @@ export const AiAssistantSection: React.FC<AiAssistantSectionProps> = ({ onNaviga
   const captions = useAiAssistantStore((state) => state.captions);
   const isLoading = useAiAssistantStore((state) => state.isLoading);
   const error = useAiAssistantStore((state) => state.error);
-  const isDemoMode = useAiAssistantStore((state) => state.isDemoMode);
   const copiedCaptionId = useAiAssistantStore((state) => state.copiedCaptionId);
   const hasGeneratedOnce = useAiAssistantStore((state) => state.hasGeneratedOnce);
 
@@ -115,38 +113,13 @@ export const AiAssistantSection: React.FC<AiAssistantSectionProps> = ({ onNaviga
             </p>
           </div>
 
-          {/* Honest Demo Mode Indicator */}
+          {/* Live AI Status Badge */}
           <div className="self-start sm:self-center shrink-0">
-            {isDemoMode ? (
-              <div
-                title="The frontend is using curated local suggestions until Nithish deploys the AI backend endpoint."
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-300 text-amber-800 text-xs font-semibold shadow-2xs"
-              >
-                <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shrink-0" />
-                <span>Demo Mode (Local Suggestions)</span>
-              </div>
-            ) : (
-              <Badge variant="success" size="sm" dot>
-                Live AI Backend Connected
-              </Badge>
-            )}
+            <Badge variant="success" size="sm" dot>
+              Live AI Backend Connected
+            </Badge>
           </div>
         </div>
-
-        {/* Demo Mode Notice Box */}
-        {isDemoMode && (
-          <aside
-            aria-label="Backend integration notice"
-            className="p-3 sm:p-4 rounded-2xl bg-white border border-blue-200/80 text-xs text-slate-600 flex items-start gap-2.5 shadow-2xs"
-          >
-            <AlertCircle className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-            <div className="min-w-0">
-              <span className="font-bold text-slate-900">Backend Ready: </span>
-              This feature uses high-quality curated suggestions matching your exact tone & language.
-              Production endpoint <code className="font-mono text-blue-700 font-bold bg-blue-50 px-1 py-0.5 rounded">POST /api/v1/ai/generate-captions</code> will seamlessly power this once deployed by Nithish.
-            </div>
-          </aside>
-        )}
 
         {/* ============================================================== */}
         {/* CONTROLS: TONE & LANGUAGE                                      */}

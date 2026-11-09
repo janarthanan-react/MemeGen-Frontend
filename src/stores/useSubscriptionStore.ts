@@ -255,6 +255,24 @@ export const useSubscriptionStore = create<SubscriptionStoreState>((set, get) =>
         // ignore
       }
 
+      // Sync purchase transaction to backend database and update user role
+      try {
+        import('../services/apiClient').then(({ apiRequest }) => {
+          apiRequest('/subscriptions/checkout', {
+            method: 'POST',
+            body: JSON.stringify({
+              planId: selectedPlanId,
+              billingCycle,
+              amount: pricing.totalPayable,
+              billingDetails: billing,
+              paymentDetails: payment,
+            }),
+          }).catch((err) => console.warn('Purchase cloud sync deferred:', err));
+        });
+      } catch {
+        // Non-fatal
+      }
+
       set({
         currentSubscription: newSubscription,
         lastOrderResult: result,

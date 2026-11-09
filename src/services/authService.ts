@@ -1,14 +1,13 @@
 import type { LoginCredentials, SignUpCredentials, AuthUser } from '../types/auth';
 import type { ApiResponse } from '../types/api';
-import { apiRequest, ApiError } from './apiClient';
+import { apiRequest } from './apiClient';
 
 /**
  * Authentication Service Contract
  *
  * Manages authentication network requests, session validation, and lifecycle.
- * - Communicates with backend endpoints (/auth/login, /auth/register, /auth/logout, /auth/me) when configured.
- * - Provides clearly identified development/demo authentication when backend is pending integration.
- * - Strict security: Never stores passwords in storage or memory.
+ * - Communicates directly with backend endpoints (/auth/login, /auth/register, /auth/logout, /auth/me, /auth/reset-password).
+ * - Strict security: Passwords are encrypted server-side with bcrypt; never stored client-side.
  */
 
 export interface AuthSuccessPayload {
@@ -22,155 +21,82 @@ const AUTH_SESSION_KEY = 'memegen_auth_session_v1';
 
 export const authService = {
   /**
-   * Check if real backend authentication is available.
+   * Submit login credentials to real backend auth endpoint.
    */
-  isBackendConfigured(): boolean {
-    return Boolean(
-      import.meta.env.VITE_API_BASE_URL &&
-        !import.meta.env.VITE_API_BASE_URL.includes('example.com')
-    );
+  async login(credentials: LoginCredentials): Promise<AuthSuccessPayload> {
+    const response = await apiRequest<ApiResponse<AuthSuccessPayload>>('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: credentials.email.trim().toLowerCase(),
+        password: credentials.password,
+        rememberMe: credentials.rememberMe,
+      }),
+    });
+
+    const payload = response.data;
+    this.saveSession(payload.token, payload.user, credentials.rememberMe);
+    return { ...payload, isDemoMode: false };
   },
 
   /**
-   * Submit login credentials to backend auth endpoint or development adapter.
+   * Submit registration credentials to real backend auth endpoint.
    */
-  async login(credentials: LoginCredentials): Promise<AuthSuccessPayload> {
-    // 1. Live Backend Integration
-    if (this.isBackendConfigured()) {
-      const response = await apiRequest<ApiResponse<AuthSuccessPayload>>('/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({
-          email: credentials.email,
-          password: credentials.password,
-          rememberMe: credentials.rememberMe,
-        }),
-      });
+  async signUp(credentials: SignUpCredentials): Promise<AuthSuccessPayload> {
+    const response = await apiRequest<ApiResponse<AuthSuccessPayload>>('/auth/register', {
+      method: 'POST',
+      body: JSON.stringify({
+        fullName: credentials.fullName.trim(),
+        email: credentials.email.trim().toLowerCase(),
+        password: credentials.password,
+      }),
+    });
 
-      this.saveSession(response.data.token, response.data.user, credentials.rememberMe);
-      return { ...response.data, isDemoMode: false };
-    }
-
-    // 2. Development / Demo Authentication Mode
-    // Emulate network latency
-    await new Promise((resolve) => setTimeout(resolve, 600));
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(credentials.email.trim())) {
-      throw new ApiError('Invalid email address format.', 400, 'INVALID_EMAIL');
-    }
-
-    // Validate credentials (submitting invalid credentials must NOT authenticate the user)
-    if (!credentials.password || credentials.password.length < 6) {
-      throw new ApiError(
-        'Invalid credentials. Password must be at least 6 characters in demo mode.',
-        401,
-        'INVALID_CREDENTIALS'
-      );
-    }
-
-    const usernamePrefix = credentials.email.split('@')[0] || 'creator';
-    const formattedName = usernamePrefix
-      .replace(/[._-]/g, ' ')
-      .replace(/\b\w/g, (c) => c.toUpperCase());
-
-    const demoUser: AuthUser = {
-      id: `demo-user-${usernamePrefix.toLowerCase()}`,
-      fullName: formattedName || 'Meme Creator',
-      email: credentials.email.toLowerCase().trim(),
-      avatarUrl: '/Profille/no-dp_16.webp',
-      role: 'creator',
-      createdAt: new Date().toISOString(),
-    };
-
-    // Create a time-limited signed demo token (valid for 24 hours)
-    const expiry = Date.now() + 24 * 60 * 60 * 1000;
-    const token = `demo_tok_${btoa(JSON.stringify({ id: demoUser.id, email: demoUser.email, exp: expiry }))}`;
-
-    const payload: AuthSuccessPayload = {
-      user: demoUser,
-      token,
-      isDemoMode: true,
-    };
-
-    this.saveSession(token, demoUser, credentials.rememberMe);
-    return payload;
+    const payload = response.data;
+    this.saveSession(payload.token, payload.user, false);
+    return { ...payload, isDemoMode: false };
   },
 
-  
-  async signUp(credentials: SignUpCredentials): Promise<AuthSuccessPayload> {
-    if (this.isBackendConfigured()) {
-      const response = await apiRequest<ApiResponse<AuthSuccessPayload>>('/auth/register', {
-        method: 'POST',
-        body: JSON.stringify({
-          fullName: credentials.fullName,
-          email: credentials.email,
-          password: credentials.password,
-        }),
-      });
+  /**
+   * Reset password with backend bcrypt encryption.
+   */
+  async resetPassword(email: string, newPassword: string): Promise<void> {
+    await apiRequest<ApiResponse<any>>('/auth/reset-password', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email.trim().toLowerCase(),
+        newPassword,
+      }),
+    });
+  },
 
-      this.saveSession(response.data.token, response.data.user, false);
-      return { ...response.data, isDemoMode: false };
-    }
-
-    await new Promise((resolve) => setTimeout(resolve, 600));
-
-    if (!credentials.fullName.trim() || credentials.fullName.trim().length < 2) {
-      throw new ApiError('Full name must be at least 2 characters.', 400, 'INVALID_NAME');
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+$/;
-    if (!emailRegex.test(credentials.email.trim())) {
-      throw new ApiError('Invalid email address format.', 400, 'INVALID_EMAIL');
-    }
-
-    if (!credentials.password || credentials.password.length < 8) {
-      throw new ApiError('Password must be at least 8 characters.', 400, 'WEAK_PASSWORD');
-    }
-
-    if (!credentials.agreeToTerms) {
-      throw new ApiError('You must agree to the Terms of Service.', 400, 'TERMS_NOT_ACCEPTED');
-    }
-
-    const usernamePrefix = credentials.email.split('@')[0] || 'creator';
-    const demoUser: AuthUser = {
-      id: `demo-user-${usernamePrefix.toLowerCase()}`,
-      fullName: credentials.fullName.trim(),
-      email: credentials.email.toLowerCase().trim(),
-      avatarUrl: '/Profille/no-dp_16.webp',
-      role: 'creator',
-      createdAt: new Date().toISOString(),
-    };
-
-    const expiry = Date.now() + 24 * 60 * 60 * 1000;
-    const token = `demo_tok_${btoa(JSON.stringify({ id: demoUser.id, email: demoUser.email, exp: expiry }))}`;
-
-    const payload: AuthSuccessPayload = {
-      user: demoUser,
-      token,
-      isDemoMode: true,
-    };
-
-    this.saveSession(token, demoUser, false);
-    return payload;
+  /**
+   * Google OAuth login
+   */
+  async googleLogin(profile: { email: string; fullName: string; avatarUrl?: string }): Promise<AuthSuccessPayload> {
+    const response = await apiRequest<ApiResponse<AuthSuccessPayload>>('/auth/google', {
+      method: 'POST',
+      body: JSON.stringify(profile),
+    });
+    const payload = response.data;
+    this.saveSession(payload.token, payload.user, false);
+    return { ...payload, isDemoMode: false };
   },
 
   /**
    * Log out active session.
    */
   async logout(): Promise<void> {
-    if (this.isBackendConfigured()) {
-      try {
-        await apiRequest('/auth/logout', { method: 'POST' });
-      } catch {
-        // Proceed with client side logout cleanup even if server request fails
-      }
-    }
     this.clearSession();
+    try {
+      // Notify backend asynchronously without blocking client logout flow
+      apiRequest('/auth/logout', { method: 'POST' }).catch(() => {});
+    } catch {
+      // Non-fatal if server is unreachable
+    }
   },
 
   /**
-   * Validate existing session token and restore authenticated user.
+   * Validate existing session token with backend and restore authenticated user.
    */
   async validateSession(): Promise<{ user: AuthUser; token: string; isDemoMode: boolean } | null> {
     if (typeof window === 'undefined') return null;
@@ -191,37 +117,22 @@ export const authService = {
         return null;
       }
 
- 
-      if (this.isBackendConfigured()) {
-        try {
-          const res = await apiRequest<ApiResponse<AuthUser>>('/auth/me');
+      // Verify token with backend
+      try {
+        const res = await apiRequest<ApiResponse<AuthUser>>('/auth/me');
+        if (res && res.data) {
           return { user: res.data, token, isDemoMode: false };
-        } catch {
-          this.clearSession();
-          return null;
         }
+      } catch {
+        // If offline or request fails but session is cached in storage, keep user session active
+        if (parsed.user) {
+          return { user: parsed.user, token, isDemoMode: false };
+        }
+        this.clearSession();
+        return null;
       }
 
-      // Validate demo session token format and expiration
-      if (token.startsWith('demo_tok_')) {
-        const payloadStr = atob(token.replace('demo_tok_', ''));
-        const payload = JSON.parse(payloadStr);
-        if (payload.exp && Date.now() > payload.exp) {
-          // Token expired
-          this.clearSession();
-          return null;
-        }
-
-        const user = parsed.user;
-        if (!user.avatarUrl || user.avatarUrl.includes('unsplash.com') || user.avatarUrl.includes('google')) {
-          user.avatarUrl = '/Profille/no-dp_16.webp';
-        }
-
-        return { user, token, isDemoMode: true };
-      }
-
-      this.clearSession();
-      return null;
+      return { user: parsed.user, token, isDemoMode: false };
     } catch {
       this.clearSession();
       return null;

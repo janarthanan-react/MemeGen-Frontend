@@ -16,7 +16,6 @@ import { AuthBrandScene } from './AuthBrandScene';
 import { PasswordStrengthMeter } from './PasswordStrengthMeter';
 import { ForgotPasswordModal } from './ForgotPasswordModal';
 import { TermsModal } from './TermsModal';
-import { authService } from '../../services/authService';
 import { useAuthStore } from '../../stores/useAuthStore';
 import { useTemplateStore } from '../../stores/useTemplateStore';
 import type { LoginCredentials, SignUpCredentials, FormValidationErrors } from '../../types/auth';
@@ -342,12 +341,6 @@ export const Auth3DScene: React.FC<Auth3DSceneProps> = ({
                 {/* Brand Logo inside top of form */}
                 <div className="flex flex-col items-center justify-center pb-1 gap-1.5">
                   <AuthBrandScene onBackHome={handleBackHome} />
-                  {!authService.isBackendConfigured() && (
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-blue-700 bg-blue-50 border border-blue-200/80 px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-2xs">
-                      <Shield className="w-3 h-3 text-blue-600" />
-                      <span>Development Demo Auth</span>
-                    </span>
-                  )}
                 </div>
                 {/* Friendly API / Backend Alert */}
                 {apiError && isLoginActive && (
@@ -543,12 +536,6 @@ export const Auth3DScene: React.FC<Auth3DSceneProps> = ({
                 {/* Brand Logo inside top of form */}
                 <div className="flex flex-col items-center justify-center pb-1 gap-1.5">
                   <AuthBrandScene onBackHome={handleBackHome} />
-                  {!authService.isBackendConfigured() && (
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-cyan-700 bg-cyan-50 border border-cyan-200/80 px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-2xs">
-                      <Shield className="w-3 h-3 text-cyan-600" />
-                      <span>Development Demo Auth</span>
-                    </span>
-                  )}
                 </div>
 
                 {/* Friendly API / Backend Alert */}

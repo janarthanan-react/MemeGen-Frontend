@@ -489,7 +489,7 @@ export async function exportMemeAsFormat(
   format: 'png' | 'jpeg' = 'png',
   quality: number = 0.95
 ): Promise<ExportResult> {
-  const { template, title } = options;
+  const { template, title, textLayers, canvasSettings } = options;
 
   try {
     const canvas = await renderMemeCanvas(options);
@@ -522,6 +522,29 @@ export async function exportMemeAsFormat(
             document.body.removeChild(link);
 
             setTimeout(() => URL.revokeObjectURL(downloadUrl), 2000);
+
+            // Synchronize exported meme to database in background
+            try {
+              import('../../services/apiClient').then(({ apiRequest }) => {
+                const dataUrl = canvas.toDataURL(mimeType, quality);
+                apiRequest('/memes', {
+                  method: 'POST',
+                  body: JSON.stringify({
+                    templateId: template.id,
+                    title: title || template.name,
+                    imageUrl: dataUrl,
+                    textLayers,
+                    canvasSettings,
+                    width: canvas.width,
+                    height: canvas.height,
+                    isPublic: true,
+                  }),
+                }).catch((err) => console.warn('Meme cloud sync deferred:', err));
+              });
+            } catch {
+              // Canvas security guard
+            }
+
             resolve({ success: true });
           },
           mimeType,

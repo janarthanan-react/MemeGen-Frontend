@@ -20,12 +20,25 @@ export class ApiError extends Error {
 /**
  * Safe retrieval of configured backend API base URL from Vite environment.
  */
-export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || 'https://api.memegen.example.com/api/v1';
+function resolveBaseUrl(): string {
+  const envUrl = import.meta.env.VITE_API_BASE_URL;
+  if (!envUrl || envUrl.includes('example.com')) {
+    if (typeof window !== 'undefined' && window.location.origin) {
+      return `${window.location.origin}/api/v1`;
+    }
+    return 'http://localhost:5000/api/v1';
+  }
+  const clean = envUrl.replace(/\/$/, '');
+  if (clean.endsWith('/api/v1')) return clean;
+  if (clean.endsWith('/api')) return `${clean}/v1`;
+  return `${clean}/api/v1`;
+}
+
+export const API_BASE_URL = resolveBaseUrl();
 
 /**
- * Lightweight, type-safe API client ready for integration with Nithish's backend.
- * Uses native fetch without adding bloated dependencies.
+ * Lightweight, type-safe API client for MemeHub backend integration.
+ * Uses native fetch without bloated dependencies.
  */
 export async function apiRequest<T>(
   endpoint: string,
@@ -33,15 +46,17 @@ export async function apiRequest<T>(
 ): Promise<T> {
   const url = endpoint.startsWith('http')
     ? endpoint
-    : `${API_BASE_URL.replace(/\/$/, '')}/${endpoint.replace(/^\//, '')}`;
+    : `${API_BASE_URL}/${endpoint.replace(/^\//, '')}`;
 
   const defaultHeaders: HeadersInit = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
   };
 
-  // Future token integration placeholder (e.g. from auth store or session storage)
-  const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null;
+  const token =
+    typeof window !== 'undefined'
+      ? localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token')
+      : null;
   if (token) {
     (defaultHeaders as Record<string, string>)['Authorization'] = `Bearer ${token}`;
   }

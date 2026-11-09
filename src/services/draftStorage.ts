@@ -1,5 +1,7 @@
 import type { MemeDraft } from '../types/draft';
+import type { ApiResponse } from '../types/api';
 import { POPULAR_TEMPLATES } from '../constants/templates';
+import { apiRequest } from './apiClient';
 
 const DRAFTS_STORAGE_KEY = 'memegen_saved_drafts_v1';
 
@@ -134,24 +136,54 @@ function createInitialSeedDrafts(): MemeDraft[] {
 }
 
 /**
- * Draft Storage Adapter
- * Decoupled from React UI so an API client can be swapped seamlessly in the future.
+ * Draft Storage Adapter with Cloud Database Synchronization
+ * Synchronizes with backend /api/v1/drafts while caching locally for offline capability.
  */
 export const draftStorage = {
   /**
-   * Retrieves all saved drafts from persistent storage.
+   * Retrieves all saved drafts from persistent backend database and local cache.
    */
   async getAll(): Promise<MemeDraft[]> {
+    // 1. Try fetching from backend database
+    try {
+      const response = await apiRequest<ApiResponse<any[]>>('/drafts');
+      if (response && response.data && Array.isArray(response.data) && response.data.length > 0) {
+        const syncedDrafts: MemeDraft[] = response.data.map((d) => {
+          const tmpl =
+            d.template ||
+            POPULAR_TEMPLATES.find((t) => t.id === (d.templateId || d.template_id)) ||
+            createInitialSeedDrafts()[0].template;
+
+          return {
+            id: d.id,
+            title: d.title || d.memeTitle || d.meme_title || 'Untitled Meme',
+            template: tmpl,
+            textLayers: d.textLayers || d.text_layers || [],
+            canvasSettings: d.canvasSettings || d.canvas_settings || {},
+            previewUrl: d.previewUrl || d.previewImageUrl || d.preview_image_url,
+            createdAt: d.createdAt || d.created_at || new Date().toISOString(),
+            updatedAt: d.updatedAt || d.updated_at || new Date().toISOString(),
+          };
+        });
+
+        this.persist(syncedDrafts);
+        return syncedDrafts;
+      }
+    } catch {
+      // Offline or network error - gracefully fall back to local storage
+    }
+
+    // 2. Fall back to local storage cache
     if (!isLocalStorageAvailable()) {
       if (!memoryStorage) {
-        memoryStorage = createInitialSeedDrafts();
+        memoryStorage = [];
       }
       return [...memoryStorage];
     }
 
     try {
       const raw = window.localStorage.getItem(DRAFTS_STORAGE_KEY);
-      if (!raw) {
+      if (raw === null) {
         const initial = createInitialSeedDrafts();
         window.localStorage.setItem(DRAFTS_STORAGE_KEY, JSON.stringify(initial));
         return initial;
@@ -159,12 +191,9 @@ export const draftStorage = {
 
       const parsed = JSON.parse(raw);
       if (!Array.isArray(parsed)) {
-        const initial = createInitialSeedDrafts();
-        window.localStorage.setItem(DRAFTS_STORAGE_KEY, JSON.stringify(initial));
-        return initial;
+        return [];
       }
 
-      // Validate shape of each item to protect against malformed data
       return parsed.filter(
         (item): item is MemeDraft =>
           Boolean(
@@ -176,8 +205,7 @@ export const draftStorage = {
           )
       );
     } catch {
-      // JSON parse error or storage read issue - return seed fallback
-      return createInitialSeedDrafts();
+      return [];
     }
   },
 
@@ -185,13 +213,36 @@ export const draftStorage = {
    * Retrieves a single draft by ID.
    */
   async getById(id: string): Promise<MemeDraft | null> {
+    try {
+      const response = await apiRequest<ApiResponse<any>>(`/drafts/${id}`);
+      if (response && response.data) {
+        const d = response.data;
+        const tmpl =
+          d.template ||
+          POPULAR_TEMPLATES.find((t) => t.id === (d.templateId || d.template_id)) ||
+          createInitialSeedDrafts()[0].template;
+
+        return {
+          id: d.id,
+          title: d.title || d.memeTitle || d.meme_title || 'Untitled Meme',
+          template: tmpl,
+          textLayers: d.textLayers || d.text_layers || [],
+          canvasSettings: d.canvasSettings || d.canvas_settings || {},
+          previewUrl: d.previewUrl || d.previewImageUrl || d.preview_image_url,
+          createdAt: d.createdAt || d.created_at || new Date().toISOString(),
+          updatedAt: d.updatedAt || d.updated_at || new Date().toISOString(),
+        };
+      }
+    } catch {
+      // Fall through to local cache
+    }
+
     const drafts = await this.getAll();
     return drafts.find((d) => d.id === id) || null;
   },
 
   /**
-   * Saves or updates a draft. If draft.id exists in the collection, updates it;
-   * otherwise creates a new entry.
+   * Saves or updates a draft in both local cache and backend database.
    */
   async save(
     payload: Omit<MemeDraft, 'id' | 'createdAt' | 'updatedAt'> & {
@@ -230,11 +281,45 @@ export const draftStorage = {
     }
 
     this.persist(drafts);
+
+    // Sync to backend database
+    try {
+      const response = await apiRequest<ApiResponse<any>>('/drafts', {
+        method: 'POST',
+        body: JSON.stringify({
+          id: savedDraft.id,
+          templateId: savedDraft.template.id,
+          template: savedDraft.template,
+          memeTitle: savedDraft.title,
+          title: savedDraft.title,
+          textLayers: savedDraft.textLayers,
+          canvasSettings: savedDraft.canvasSettings,
+          previewImageUrl: savedDraft.previewUrl,
+          previewUrl: savedDraft.previewUrl,
+        }),
+      });
+
+      if (response && response.data) {
+        savedDraft = {
+          ...savedDraft,
+          id: response.data.id || savedDraft.id,
+          updatedAt: response.data.updatedAt || savedDraft.updatedAt,
+        };
+        const updatedIdx = drafts.findIndex((d) => d.id === savedDraft.id);
+        if (updatedIdx >= 0) {
+          drafts[updatedIdx] = savedDraft;
+          this.persist(drafts);
+        }
+      }
+    } catch (err) {
+      console.warn('Draft persisted locally; cloud database sync deferred:', err);
+    }
+
     return savedDraft;
   },
 
   /**
-   * Renames an existing draft.
+   * Renames an existing draft and syncs to database.
    */
   async rename(id: string, newTitle: string): Promise<MemeDraft> {
     const drafts = await this.getAll();
@@ -251,11 +336,28 @@ export const draftStorage = {
 
     drafts[index] = updated;
     this.persist(drafts);
+
+    try {
+      await apiRequest<ApiResponse<any>>('/drafts', {
+        method: 'POST',
+        body: JSON.stringify({
+          id: updated.id,
+          templateId: updated.template.id,
+          memeTitle: updated.title,
+          title: updated.title,
+          textLayers: updated.textLayers,
+          canvasSettings: updated.canvasSettings,
+        }),
+      });
+    } catch {
+      // Local copy updated
+    }
+
     return updated;
   },
 
   /**
-   * Duplicates an existing draft.
+   * Duplicates an existing draft and syncs to database.
    */
   async duplicate(id: string): Promise<MemeDraft> {
     const drafts = await this.getAll();
@@ -265,9 +367,10 @@ export const draftStorage = {
     }
 
     const nowIso = new Date().toISOString();
+    const newId = `draft-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
     const duplicated: MemeDraft = {
       ...JSON.parse(JSON.stringify(original)),
-      id: `draft-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      id: newId,
       title: `${original.title} (Copy)`,
       createdAt: nowIso,
       updatedAt: nowIso,
@@ -275,28 +378,53 @@ export const draftStorage = {
 
     drafts.unshift(duplicated);
     this.persist(drafts);
+
+    try {
+      await apiRequest<ApiResponse<any>>('/drafts', {
+        method: 'POST',
+        body: JSON.stringify({
+          id: duplicated.id,
+          templateId: duplicated.template.id,
+          template: duplicated.template,
+          memeTitle: duplicated.title,
+          title: duplicated.title,
+          textLayers: duplicated.textLayers,
+          canvasSettings: duplicated.canvasSettings,
+        }),
+      });
+    } catch {
+      // Local copy created
+    }
+
     return duplicated;
   },
 
   /**
-   * Deletes a draft by ID.
+   * Deletes a draft by ID from local cache and cloud database.
    */
   async delete(id: string): Promise<boolean> {
     const drafts = await this.getAll();
     const filtered = drafts.filter((d) => d.id !== id);
     this.persist(filtered);
+
+    try {
+      await apiRequest(`/drafts/${id}`, { method: 'DELETE' });
+    } catch {
+      // Non-fatal
+    }
+
     return true;
   },
 
   /**
-   * Synchronously or asynchronously writes to persistent storage.
+   * Synchronously writes to persistent local storage.
    */
   persist(drafts: MemeDraft[]) {
     if (isLocalStorageAvailable()) {
       try {
         window.localStorage.setItem(DRAFTS_STORAGE_KEY, JSON.stringify(drafts));
       } catch (err) {
-        console.warn('Unable to persist drafts to localStorage (quota or disabled):', err);
+        console.warn('Unable to persist drafts to localStorage:', err);
       }
     }
     memoryStorage = [...drafts];

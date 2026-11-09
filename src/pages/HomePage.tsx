@@ -19,7 +19,6 @@ import {
   Grid,
   ShieldCheck,
   Crown,
-  Sparkles,
   Flame,
 } from 'lucide-react';
 import { TemplateGrid } from '../features/templates/TemplateGrid';
@@ -876,7 +875,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
                 {/* Floating Blue Star Badge */}
                 <div className="absolute -top-2 right-0 sm:-right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-blue-500 text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-lg shadow-blue-500/30 rotate-0 sm:rotate-6 animate-float-delayed hover:scale-120 sm:hover:-rotate-12 transition-transform cursor-pointer">
-                  <Sparkles className="w-4 h-4 text-white" />
+                  <Star className="w-4 h-4 text-white fill-white" />
                 </div>
               </div>
             </div>

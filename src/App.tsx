@@ -21,6 +21,7 @@ const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
 const PaymentSuccessPage = lazy(() => import('./pages/PaymentSuccessPage'));
 const PaymentFailedPage = lazy(() => import('./pages/PaymentFailedPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const AdminDashboardPage = lazy(() => import('./pages/AdminDashboardPage'));
 
 export const App: React.FC = () => {
   const { route, navigate } = useAppRouter();
@@ -51,6 +52,23 @@ export const App: React.FC = () => {
     }, 4000);
     return () => clearTimeout(timer);
   }, [notification, setNotification]);
+
+  // Log platform traffic and pageviews to backend DB
+  useEffect(() => {
+    try {
+      import('./services/apiClient').then(({ apiRequest }) => {
+        apiRequest('/analytics/track', {
+          method: 'POST',
+          body: JSON.stringify({
+            path: `/${route === 'home' ? '' : route}`,
+            referrer: typeof document !== 'undefined' ? document.referrer : 'direct',
+          }),
+        }).catch(() => {});
+      });
+    } catch {
+      // Non-fatal
+    }
+  }, [route]);
 
   const isAuthModalOpen = route === 'login' || route === 'signup';
 
@@ -161,6 +179,8 @@ export const App: React.FC = () => {
             <PaymentSuccessPage onNavigate={navigate} />
           ) : route === 'payment-failed' ? (
             <PaymentFailedPage onNavigate={navigate} />
+          ) : route === 'admin' ? (
+            <AdminDashboardPage onNavigate={navigate} />
           ) : route === 'not-found' ? (
             <NotFoundPage onNavigate={navigate} />
           ) : (

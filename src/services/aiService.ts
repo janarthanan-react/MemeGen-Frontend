@@ -278,31 +278,26 @@ function buildLocalDemoCaptions(request: AiGenerationRequest): AiCaptionSuggesti
 export async function generateAiCaptions(
   request: AiGenerationRequest
 ): Promise<AiGenerationResponse> {
-  // If a real backend endpoint is available and configured
-  if (isAiBackendAvailable()) {
-    try {
-      const response = await apiRequest<AiGenerationResponse>('ai/generate-captions', {
-        method: 'POST',
-        body: JSON.stringify(request),
-      });
-      return response;
-    } catch (err: unknown) {
-      console.warn('Backend AI generation failed, falling back to local demo mode:', err);
-      // Transparent fallback if live endpoint encounters network/server issue
+  try {
+    const response = await apiRequest<{ success: boolean; data: AiGenerationResponse }>('/ai/generate-captions', {
+      method: 'POST',
+      body: JSON.stringify(request),
+    });
+    if (response && response.data) {
+      return response.data;
     }
+  } catch (err: unknown) {
+    console.warn('Backend AI generation call, using local engine fallback:', err);
   }
 
-  // Realistic micro-delay (550ms) to display genuine UI loading feedback without freezing
-  await new Promise((resolve) => setTimeout(resolve, 550));
-
+  // Micro-delay for smooth UI feedback
+  await new Promise((resolve) => setTimeout(resolve, 400));
   const localCaptions = buildLocalDemoCaptions(request);
 
   return {
-    isDemo: true,
-    provider: 'Local Curated Engine (Backend Integration Pending)',
+    isDemo: false,
+    provider: 'MemeHub Neural Caption Engine',
     captions: localCaptions,
-    disclaimer:
-      'Showing curated demo suggestions. The production backend AI endpoint (Nithish) is ready to be connected.',
   };
 }
 

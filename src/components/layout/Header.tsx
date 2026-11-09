@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, lazy, Suspense } from 'react';
-import { Bell, Menu, X, User, Bookmark, LogOut, ChevronDown, Plus, Crown, LayoutDashboard } from 'lucide-react';
+import { Bell, Menu, X, User, Bookmark, LogOut, ChevronDown, Plus, Crown, LayoutDashboard, Shield } from 'lucide-react';
 import { MAIN_NAV_LINKS } from '../../constants/navigation';
 import { SearchInput } from '../ui/SearchInput';
 import { IconButton } from '../ui/IconButton';
@@ -32,7 +32,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   const fetchProfile = useProfileStore((state) => state.fetchProfile);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const authUser = useAuthStore((state) => state.user);
-  const isDemoMode = useAuthStore((state) => state.isDemoMode);
   const logout = useAuthStore((state) => state.logout);
 
   const isNotificationsOpen = useNotificationStore((state) => state.isNotificationsOpen);
@@ -413,16 +412,25 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                             <div className="text-xs text-cyan-400 truncate">
                               @{profile?.username || authUser?.email.split('@')[0] || 'creator'}
                             </div>
-                            {isDemoMode && (
-                              <span className="inline-block mt-0.5 text-[10px] font-semibold text-cyan-300 bg-cyan-950/60 border border-cyan-500/30 px-1.5 py-0.5 rounded-md">
-                                Demo Creator Account
-                              </span>
-                            )}
                           </div>
                         </div>
 
                         {/* Navigation items */}
                         <div className="py-1">
+                          {(authUser?.role === 'admin' || profile?.role === 'admin') && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setProfileDropdownOpen(false);
+                                if (onNavigate) onNavigate('/admin');
+                              }}
+                              className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold rounded-xl text-blue-300 hover:text-white bg-blue-900/30 hover:bg-blue-800/40 border border-blue-500/20 transition-colors cursor-pointer text-left mb-1"
+                            >
+                              <Shield className="w-4 h-4 text-blue-400" />
+                              <span>Admin Dashboard</span>
+                            </button>
+                          )}
+
                           <button
                             type="button"
                             onClick={() => {
@@ -497,12 +505,12 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                             type="button"
                             onClick={async () => {
                               setProfileDropdownOpen(false);
-                              await logout();
                               if (onNavigate) onNavigate('/');
                               useTemplateStore.getState().setNotification({
                                 type: 'info',
                                 message: 'You have been logged out.',
                               });
+                              await logout();
                             }}
                             className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold rounded-xl text-rose-300 hover:text-rose-100 hover:bg-rose-950/40 transition-colors cursor-pointer text-left"
                           >
@@ -835,6 +843,21 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                       </span>
                     )}
                   </a>
+
+                  {(authUser?.role === 'admin' || profile?.role === 'admin') && (
+                    <a
+                      href="#admin"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        closeMobileMenu();
+                        if (onNavigate) onNavigate('/admin');
+                      }}
+                      className="px-3.5 py-3 text-sm font-semibold rounded-xl text-blue-300 hover:text-white bg-blue-900/30 hover:bg-blue-800/40 border border-blue-500/20 flex items-center gap-2.5 min-h-[44px]"
+                    >
+                      <Shield className="w-4 h-4 text-blue-400" />
+                      <span>Admin Dashboard</span>
+                    </a>
+                  )}
 
                   <a
                     href="#create"
