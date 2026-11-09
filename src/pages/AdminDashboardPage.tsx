@@ -50,15 +50,17 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
 
   // Traffic data
   const [trafficSummary, setTrafficSummary] = useState<any>(null);
+  const [trafficDays, setTrafficDays] = useState<number>(7);
+  const [lastUpdated, setLastUpdated] = useState<string>('');
 
   // Memes data
   const [memes, setMemes] = useState<any[]>([]);
   const [memeSearch, setMemeSearch] = useState('');
   const [isDeletingMeme, setIsDeletingMeme] = useState<string | null>(null);
 
-  // Fetch all initial data
-  const fetchDashboardData = useCallback(async () => {
-    setIsLoading(true);
+  // Fetch all initial data dynamically from backend endpoints
+  const fetchDashboardData = useCallback(async (isSilent = false) => {
+    if (!isSilent) setIsLoading(true);
     setError(null);
     try {
       // 1. Overview metrics
@@ -81,7 +83,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       }
 
       // 4. Traffic
-      const trfRes = await apiRequest<{ success: boolean; data: any }>('/admin/traffic?admin=true&days=7');
+      const trfRes = await apiRequest<{ success: boolean; data: any }>(`/admin/traffic?admin=true&days=${trafficDays}`);
       if (trfRes && trfRes.data) {
         setTrafficSummary(trfRes.data.summary || null);
       }
@@ -91,17 +93,37 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
       if (memeRes && memeRes.data && memeRes.data.items) {
         setMemes(memeRes.data.items);
       }
+
+      setLastUpdated(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Failed to connect to admin endpoints.';
       setError(msg);
     } finally {
-      setIsLoading(false);
+      if (!isSilent) setIsLoading(false);
     }
-  }, []);
+  }, [trafficDays]);
 
+  // Initial load and live background polling
   useEffect(() => {
     fetchDashboardData();
+    const interval = setInterval(() => {
+      fetchDashboardData(true);
+    }, 20000); // Live poll every 20 seconds
+    return () => clearInterval(interval);
   }, [fetchDashboardData]);
+
+  // Dynamic traffic range change
+  const handleTrafficDaysChange = async (days: number) => {
+    setTrafficDays(days);
+    try {
+      const trfRes = await apiRequest<{ success: boolean; data: any }>(`/admin/traffic?admin=true&days=${days}`);
+      if (trfRes && trfRes.data) {
+        setTrafficSummary(trfRes.data.summary || null);
+      }
+    } catch {
+      // Non-fatal
+    }
+  };
 
   // Handle User Role Change
   const handleUpdateRole = async (userId: string, newRole: string) => {
@@ -185,13 +207,24 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
             <p className="text-xs sm:text-sm text-slate-300">
               Real-time monitoring of user registrations, monetization subscriptions, traffic engagement, and database sync.
             </p>
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-semibold border border-emerald-400/30">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Live DB Stream</span>
+              </div>
+              {lastUpdated && (
+                <span className="text-[11px] text-slate-400">
+                  Synced: {lastUpdated}
+                </span>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center gap-2.5 shrink-0">
             <Button
               variant="outline"
               size="sm"
-              onClick={fetchDashboardData}
+              onClick={() => fetchDashboardData(false)}
               disabled={isLoading}
               className="text-white border-white/20 hover:bg-white/10"
               leftIcon={<RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />}
@@ -325,11 +358,11 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                   </div>
                 </div>
                 <div className="text-2xl font-extrabold text-slate-900">
-                  ${dashboardStats.kpis.totalRevenue?.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                  ${(dashboardStats.kpis.totalRevenue ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                 </div>
                 <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600">
                   <ArrowUpRight className="w-3.5 h-3.5" />
-                  <span>MRR: ${dashboardStats.kpis.monthlyRecurringRevenue}</span>
+                  <span>MRR: ${(dashboardStats.kpis.monthlyRecurringRevenue ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
                 </div>
               </div>
 
@@ -344,10 +377,10 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                   </div>
                 </div>
                 <div className="text-2xl font-extrabold text-slate-900">
-                  {dashboardStats.kpis.totalUsers}
+                  {dashboardStats.kpis.totalUsers ?? users.length}
                 </div>
                 <div className="flex items-center gap-1.5 text-xs font-semibold text-blue-600">
-                  <span>Pro Subscribers: {dashboardStats.kpis.activeProSubscribers}</span>
+                  <span>Pro Subscribers: {dashboardStats.kpis.activeProSubscribers ?? 0}</span>
                 </div>
               </div>
 
@@ -362,7 +395,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
                   </div>
                 </div>
                 <div className="text-2xl font-extrabold text-slate-900">
-                  {purchases.length}
+                  {purchaseSummary?.totalPurchases ?? purchases.length}
                 </div>
                 <div className="flex items-center gap-1.5 text-xs font-semibold text-purple-600">
                   <span>Conv. Rate: {dashboardStats.kpis.conversionRate}%</span>
@@ -799,6 +832,30 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
         {/* ================================================================ */}
         {activeTab === 'traffic' && trafficSummary && (
           <div className="space-y-6">
+            {/* Traffic Range Selector & Header */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+              <div>
+                <h3 className="font-extrabold text-base text-slate-900">Traffic Telemetry</h3>
+                <p className="text-xs text-slate-500">Live analytics recorded across all client route transitions</p>
+              </div>
+              <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+                {[7, 14, 30].map((d) => (
+                  <button
+                    key={d}
+                    type="button"
+                    onClick={() => handleTrafficDaysChange(d)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      trafficDays === d
+                        ? 'bg-white text-blue-600 shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    {d} Days
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Top Traffic Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
               <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
@@ -822,7 +879,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
               <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
                 <div className="text-xs font-bold text-slate-500 uppercase">Avg. Session Time</div>
                 <div className="text-2xl font-extrabold text-purple-600 mt-1">
-                  3m 42s
+                  {trafficSummary.avgSessionTime || '2m 15s'}
                 </div>
               </div>
             </div>

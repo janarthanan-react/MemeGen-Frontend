@@ -250,8 +250,8 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
             <div
               className={`relative ${
                 isAuthenticated
-                  ? 'w-36 md:w-44 lg:w-52 xl:w-64 2xl:w-72 transition-all duration-200'
-                  : 'w-44 md:w-52 lg:w-64 xl:w-72 2xl:w-80 transition-all duration-200'
+                  ? 'w-30 md:w-44 lg:w-42 xl:w-64 2xl:w-62 transition-all duration-200'
+                  : 'w-34 md:w-52 lg:w-54 xl:w-62 2xl:w-80 transition-all duration-200'
               }`}
             >
               <SearchInput
