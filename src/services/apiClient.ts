@@ -22,15 +22,16 @@ export class ApiError extends Error {
  */
 function resolveBaseUrl(): string {
   const envUrl = import.meta.env.VITE_API_BASE_URL;
-  if (!envUrl || envUrl.includes('example.com')) {
-    if (typeof window !== 'undefined' && window.location.origin) {
-      return `${window.location.origin}/api/v1`;
-    }
-    return 'http://localhost:5000/api/v1';
+
+  if (!envUrl) {
+    throw new Error("VITE_API_BASE_URL is not configured");
   }
-  const clean = envUrl.replace(/\/$/, '');
-  if (clean.endsWith('/api/v1')) return clean;
-  if (clean.endsWith('/api')) return `${clean}/v1`;
+
+  const clean = envUrl.trim().replace(/\/+$/, "");
+
+  if (clean.endsWith("/api/v1")) return clean;
+  if (clean.endsWith("/api")) return `${clean}/v1`;
+
   return `${clean}/api/v1`;
 }
 
